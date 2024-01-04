@@ -3,9 +3,11 @@ package kanthorsdk_test
 import (
 	"context"
 	"errors"
+	"net/http"
 	"os"
 	"time"
 
+	"github.com/jaswdr/faker"
 	kanthorsdk "github.com/scrapnode/kanthor-sdk-go"
 )
 
@@ -34,12 +36,38 @@ func Context() (context.Context, context.CancelFunc) {
 }
 
 func AppId(sdk *kanthorsdk.Kanthor) (string, error) {
+	f := faker.New()
+
 	ctx, cancel := Context()
 	defer cancel()
 
 	req := &kanthorsdk.ApplicationCreateReq{}
-	req.SetName("testing")
+	req.SetName(f.App().Name())
 	res, err := sdk.Application.Create(ctx, req)
+	if err != nil {
+		return "", err
+	}
+
+	return *res.Id, nil
+}
+
+func EpId(sdk *kanthorsdk.Kanthor) (string, error) {
+	f := faker.New()
+
+	appId, err := AppId(sdk)
+	if err != nil {
+		return "", err
+	}
+
+	ctx, cancel := Context()
+	defer cancel()
+
+	req := &kanthorsdk.EndpointCreateReq{}
+	req.SetAppId(appId)
+	req.SetName(f.App().Name())
+	req.SetMethod(http.MethodPost)
+	req.SetUri(f.Internet().URL())
+	res, err := sdk.Endpoint.Create(ctx, req)
 	if err != nil {
 		return "", err
 	}

@@ -58,10 +58,11 @@ func New(credentials string, options ...Option) (*Kanthor, error) {
 
 	api := openapi.NewAPIClient(conf)
 	sdk := &Kanthor{
-		Account:     &Account{api: api},
-		Application: &Application{api: api},
-		Endpoint:    &Endpoint{api: api},
-		Message:     &Message{api: api},
+		Account:      &Account{api: api},
+		Application:  &Application{api: api},
+		Endpoint:     &Endpoint{api: api},
+		EndpointRule: &EndpointRule{api: api},
+		Message:      &Message{api: api},
 	}
 	return sdk, nil
 }

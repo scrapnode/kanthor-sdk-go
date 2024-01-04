@@ -3,6 +3,8 @@ set -e
 
 CHECKSUM_FILE=./checksum
 
+rm -rf *.out
+
 CHECKSUM_NEW=$(find . -type f -name '*.out' -exec sha256sum {} \; | sort -k 2 | sha256sum | cut -d  ' ' -f1)
 CHECKSUM_OLD=$(cat $CHECKSUM_FILE || true)
 

@@ -35,6 +35,8 @@ jq '{id: .app_id[0]}' "$STORAGE_PATH/workspace.transfer.json" > "$STORAGE_PATH/a
 TEST_APPLICATION_ID=$(cat $STORAGE_PATH/application.json | jq -r '.id')
 echo -n "$TEST_APPLICATION_ID"  > "$STORAGE_PATH/application.plain"
 
+echo $(cat "$STORAGE_PATH/application.plain")
+
 
 
 IDEMPTOTENCY_KEY_WORKSPACE_CREDENTIALS_GENERATE=$(uuidgen)
@@ -50,3 +52,5 @@ curl -s -X POST "$TEST_KANTHOR_PORTAL_API_ENDPOINT/credentials" \
 TEST_WORKSPACE_CREDENITIALS_USER=$(cat $STORAGE_PATH/workspace.credentials.json | jq -r '.user')
 TEST_WORKSPACE_CREDENITIALS_PASS=$(cat $STORAGE_PATH/workspace.credentials.json | jq -r '.password')
 echo -n "$TEST_WORKSPACE_CREDENITIALS_USER:$TEST_WORKSPACE_CREDENITIALS_PASS"  > "$STORAGE_PATH/workspace.credentials.plain"
+
+echo $(cat "$STORAGE_PATH/workspace.credentials.plain")
