@@ -13,6 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the EndpointDeleteRes type satisfies the MappedNullable interface at compile time
@@ -20,21 +22,30 @@ var _ MappedNullable = &EndpointDeleteRes{}
 
 // EndpointDeleteRes struct for EndpointDeleteRes
 type EndpointDeleteRes struct {
-	AppId *string `json:"app_id,omitempty"`
-	CreatedAt *int64 `json:"created_at,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Method *string `json:"method,omitempty"`
-	Name *string `json:"name,omitempty"`
-	UpdatedAt *int64 `json:"updated_at,omitempty"`
-	Uri *string `json:"uri,omitempty"`
+	AppId string `json:"app_id"`
+	CreatedAt int64 `json:"created_at"`
+	Id string `json:"id"`
+	Method string `json:"method"`
+	Name string `json:"name"`
+	UpdatedAt int64 `json:"updated_at"`
+	Uri string `json:"uri"`
 }
+
+type _EndpointDeleteRes EndpointDeleteRes
 
 // NewEndpointDeleteRes instantiates a new EndpointDeleteRes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpointDeleteRes() *EndpointDeleteRes {
+func NewEndpointDeleteRes(appId string, createdAt int64, id string, method string, name string, updatedAt int64, uri string) *EndpointDeleteRes {
 	this := EndpointDeleteRes{}
+	this.AppId = appId
+	this.CreatedAt = createdAt
+	this.Id = id
+	this.Method = method
+	this.Name = name
+	this.UpdatedAt = updatedAt
+	this.Uri = uri
 	return &this
 }
 
@@ -46,228 +57,172 @@ func NewEndpointDeleteResWithDefaults() *EndpointDeleteRes {
 	return &this
 }
 
-// GetAppId returns the AppId field value if set, zero value otherwise.
+// GetAppId returns the AppId field value
 func (o *EndpointDeleteRes) GetAppId() string {
-	if o == nil || IsNil(o.AppId) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.AppId
+
+	return o.AppId
 }
 
-// GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
+// GetAppIdOk returns a tuple with the AppId field value
 // and a boolean to check if the value has been set.
 func (o *EndpointDeleteRes) GetAppIdOk() (*string, bool) {
-	if o == nil || IsNil(o.AppId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.AppId, true
+	return &o.AppId, true
 }
 
-// HasAppId returns a boolean if a field has been set.
-func (o *EndpointDeleteRes) HasAppId() bool {
-	if o != nil && !IsNil(o.AppId) {
-		return true
-	}
-
-	return false
-}
-
-// SetAppId gets a reference to the given string and assigns it to the AppId field.
+// SetAppId sets field value
 func (o *EndpointDeleteRes) SetAppId(v string) {
-	o.AppId = &v
+	o.AppId = v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+// GetCreatedAt returns the CreatedAt field value
 func (o *EndpointDeleteRes) GetCreatedAt() int64 {
-	if o == nil || IsNil(o.CreatedAt) {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.CreatedAt
+
+	return o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *EndpointDeleteRes) GetCreatedAtOk() (*int64, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
+	if o == nil {
 		return nil, false
 	}
-	return o.CreatedAt, true
+	return &o.CreatedAt, true
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *EndpointDeleteRes) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
+// SetCreatedAt sets field value
 func (o *EndpointDeleteRes) SetCreatedAt(v int64) {
-	o.CreatedAt = &v
+	o.CreatedAt = v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *EndpointDeleteRes) GetId() string {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *EndpointDeleteRes) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *EndpointDeleteRes) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value
 func (o *EndpointDeleteRes) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
-// GetMethod returns the Method field value if set, zero value otherwise.
+// GetMethod returns the Method field value
 func (o *EndpointDeleteRes) GetMethod() string {
-	if o == nil || IsNil(o.Method) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Method
+
+	return o.Method
 }
 
-// GetMethodOk returns a tuple with the Method field value if set, nil otherwise
+// GetMethodOk returns a tuple with the Method field value
 // and a boolean to check if the value has been set.
 func (o *EndpointDeleteRes) GetMethodOk() (*string, bool) {
-	if o == nil || IsNil(o.Method) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Method, true
+	return &o.Method, true
 }
 
-// HasMethod returns a boolean if a field has been set.
-func (o *EndpointDeleteRes) HasMethod() bool {
-	if o != nil && !IsNil(o.Method) {
-		return true
-	}
-
-	return false
-}
-
-// SetMethod gets a reference to the given string and assigns it to the Method field.
+// SetMethod sets field value
 func (o *EndpointDeleteRes) SetMethod(v string) {
-	o.Method = &v
+	o.Method = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *EndpointDeleteRes) GetName() string {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *EndpointDeleteRes) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *EndpointDeleteRes) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *EndpointDeleteRes) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+// GetUpdatedAt returns the UpdatedAt field value
 func (o *EndpointDeleteRes) GetUpdatedAt() int64 {
-	if o == nil || IsNil(o.UpdatedAt) {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.UpdatedAt
+
+	return o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
 // and a boolean to check if the value has been set.
 func (o *EndpointDeleteRes) GetUpdatedAtOk() (*int64, bool) {
-	if o == nil || IsNil(o.UpdatedAt) {
+	if o == nil {
 		return nil, false
 	}
-	return o.UpdatedAt, true
+	return &o.UpdatedAt, true
 }
 
-// HasUpdatedAt returns a boolean if a field has been set.
-func (o *EndpointDeleteRes) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetUpdatedAt gets a reference to the given int64 and assigns it to the UpdatedAt field.
+// SetUpdatedAt sets field value
 func (o *EndpointDeleteRes) SetUpdatedAt(v int64) {
-	o.UpdatedAt = &v
+	o.UpdatedAt = v
 }
 
-// GetUri returns the Uri field value if set, zero value otherwise.
+// GetUri returns the Uri field value
 func (o *EndpointDeleteRes) GetUri() string {
-	if o == nil || IsNil(o.Uri) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Uri
+
+	return o.Uri
 }
 
-// GetUriOk returns a tuple with the Uri field value if set, nil otherwise
+// GetUriOk returns a tuple with the Uri field value
 // and a boolean to check if the value has been set.
 func (o *EndpointDeleteRes) GetUriOk() (*string, bool) {
-	if o == nil || IsNil(o.Uri) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Uri, true
+	return &o.Uri, true
 }
 
-// HasUri returns a boolean if a field has been set.
-func (o *EndpointDeleteRes) HasUri() bool {
-	if o != nil && !IsNil(o.Uri) {
-		return true
-	}
-
-	return false
-}
-
-// SetUri gets a reference to the given string and assigns it to the Uri field.
+// SetUri sets field value
 func (o *EndpointDeleteRes) SetUri(v string) {
-	o.Uri = &v
+	o.Uri = v
 }
 
 func (o EndpointDeleteRes) MarshalJSON() ([]byte, error) {
@@ -280,28 +235,57 @@ func (o EndpointDeleteRes) MarshalJSON() ([]byte, error) {
 
 func (o EndpointDeleteRes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AppId) {
-		toSerialize["app_id"] = o.AppId
-	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !IsNil(o.Method) {
-		toSerialize["method"] = o.Method
-	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !IsNil(o.UpdatedAt) {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
-	if !IsNil(o.Uri) {
-		toSerialize["uri"] = o.Uri
-	}
+	toSerialize["app_id"] = o.AppId
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["id"] = o.Id
+	toSerialize["method"] = o.Method
+	toSerialize["name"] = o.Name
+	toSerialize["updated_at"] = o.UpdatedAt
+	toSerialize["uri"] = o.Uri
 	return toSerialize, nil
+}
+
+func (o *EndpointDeleteRes) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"app_id",
+		"created_at",
+		"id",
+		"method",
+		"name",
+		"updated_at",
+		"uri",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varEndpointDeleteRes := _EndpointDeleteRes{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varEndpointDeleteRes)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EndpointDeleteRes(varEndpointDeleteRes)
+
+	return err
 }
 
 type NullableEndpointDeleteRes struct {

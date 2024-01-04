@@ -17,62 +17,64 @@ import (
 	"fmt"
 )
 
-// checks if the EndpointUpdateReq type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &EndpointUpdateReq{}
+// checks if the Account type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Account{}
 
-// EndpointUpdateReq struct for EndpointUpdateReq
-type EndpointUpdateReq struct {
-	Method string `json:"method"`
+// Account struct for Account
+type Account struct {
+	Metadata map[string]string `json:"metadata"`
 	Name string `json:"name"`
+	Sub string `json:"sub"`
 }
 
-type _EndpointUpdateReq EndpointUpdateReq
+type _Account Account
 
-// NewEndpointUpdateReq instantiates a new EndpointUpdateReq object
+// NewAccount instantiates a new Account object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpointUpdateReq(method string, name string) *EndpointUpdateReq {
-	this := EndpointUpdateReq{}
-	this.Method = method
+func NewAccount(metadata map[string]string, name string, sub string) *Account {
+	this := Account{}
+	this.Metadata = metadata
 	this.Name = name
+	this.Sub = sub
 	return &this
 }
 
-// NewEndpointUpdateReqWithDefaults instantiates a new EndpointUpdateReq object
+// NewAccountWithDefaults instantiates a new Account object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewEndpointUpdateReqWithDefaults() *EndpointUpdateReq {
-	this := EndpointUpdateReq{}
+func NewAccountWithDefaults() *Account {
+	this := Account{}
 	return &this
 }
 
-// GetMethod returns the Method field value
-func (o *EndpointUpdateReq) GetMethod() string {
+// GetMetadata returns the Metadata field value
+func (o *Account) GetMetadata() map[string]string {
 	if o == nil {
-		var ret string
+		var ret map[string]string
 		return ret
 	}
 
-	return o.Method
+	return o.Metadata
 }
 
-// GetMethodOk returns a tuple with the Method field value
+// GetMetadataOk returns a tuple with the Metadata field value
 // and a boolean to check if the value has been set.
-func (o *EndpointUpdateReq) GetMethodOk() (*string, bool) {
+func (o *Account) GetMetadataOk() (*map[string]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Method, true
+	return &o.Metadata, true
 }
 
-// SetMethod sets field value
-func (o *EndpointUpdateReq) SetMethod(v string) {
-	o.Method = v
+// SetMetadata sets field value
+func (o *Account) SetMetadata(v map[string]string) {
+	o.Metadata = v
 }
 
 // GetName returns the Name field value
-func (o *EndpointUpdateReq) GetName() string {
+func (o *Account) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -83,7 +85,7 @@ func (o *EndpointUpdateReq) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *EndpointUpdateReq) GetNameOk() (*string, bool) {
+func (o *Account) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -91,11 +93,35 @@ func (o *EndpointUpdateReq) GetNameOk() (*string, bool) {
 }
 
 // SetName sets field value
-func (o *EndpointUpdateReq) SetName(v string) {
+func (o *Account) SetName(v string) {
 	o.Name = v
 }
 
-func (o EndpointUpdateReq) MarshalJSON() ([]byte, error) {
+// GetSub returns the Sub field value
+func (o *Account) GetSub() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Sub
+}
+
+// GetSubOk returns a tuple with the Sub field value
+// and a boolean to check if the value has been set.
+func (o *Account) GetSubOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sub, true
+}
+
+// SetSub sets field value
+func (o *Account) SetSub(v string) {
+	o.Sub = v
+}
+
+func (o Account) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -103,20 +129,22 @@ func (o EndpointUpdateReq) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o EndpointUpdateReq) ToMap() (map[string]interface{}, error) {
+func (o Account) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["method"] = o.Method
+	toSerialize["metadata"] = o.Metadata
 	toSerialize["name"] = o.Name
+	toSerialize["sub"] = o.Sub
 	return toSerialize, nil
 }
 
-func (o *EndpointUpdateReq) UnmarshalJSON(data []byte) (err error) {
+func (o *Account) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"method",
+		"metadata",
 		"name",
+		"sub",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -133,53 +161,53 @@ func (o *EndpointUpdateReq) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varEndpointUpdateReq := _EndpointUpdateReq{}
+	varAccount := _Account{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEndpointUpdateReq)
+	err = decoder.Decode(&varAccount)
 
 	if err != nil {
 		return err
 	}
 
-	*o = EndpointUpdateReq(varEndpointUpdateReq)
+	*o = Account(varAccount)
 
 	return err
 }
 
-type NullableEndpointUpdateReq struct {
-	value *EndpointUpdateReq
+type NullableAccount struct {
+	value *Account
 	isSet bool
 }
 
-func (v NullableEndpointUpdateReq) Get() *EndpointUpdateReq {
+func (v NullableAccount) Get() *Account {
 	return v.value
 }
 
-func (v *NullableEndpointUpdateReq) Set(val *EndpointUpdateReq) {
+func (v *NullableAccount) Set(val *Account) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableEndpointUpdateReq) IsSet() bool {
+func (v NullableAccount) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableEndpointUpdateReq) Unset() {
+func (v *NullableAccount) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableEndpointUpdateReq(val *EndpointUpdateReq) *NullableEndpointUpdateReq {
-	return &NullableEndpointUpdateReq{value: val, isSet: true}
+func NewNullableAccount(val *Account) *NullableAccount {
+	return &NullableAccount{value: val, isSet: true}
 }
 
-func (v NullableEndpointUpdateReq) MarshalJSON() ([]byte, error) {
+func (v NullableAccount) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableEndpointUpdateReq) UnmarshalJSON(src []byte) error {
+func (v *NullableAccount) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

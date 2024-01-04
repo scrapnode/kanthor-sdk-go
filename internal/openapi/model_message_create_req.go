@@ -13,6 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the MessageCreateReq type satisfies the MappedNullable interface at compile time
@@ -20,18 +22,24 @@ var _ MappedNullable = &MessageCreateReq{}
 
 // MessageCreateReq struct for MessageCreateReq
 type MessageCreateReq struct {
-	AppId *string `json:"app_id,omitempty"`
-	Body map[string]interface{} `json:"body,omitempty"`
-	Headers *map[string]string `json:"headers,omitempty"`
-	Type *string `json:"type,omitempty"`
+	AppId string `json:"app_id"`
+	Body map[string]interface{} `json:"body"`
+	Headers map[string]string `json:"headers"`
+	Type string `json:"type"`
 }
+
+type _MessageCreateReq MessageCreateReq
 
 // NewMessageCreateReq instantiates a new MessageCreateReq object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMessageCreateReq() *MessageCreateReq {
+func NewMessageCreateReq(appId string, body map[string]interface{}, headers map[string]string, type_ string) *MessageCreateReq {
 	this := MessageCreateReq{}
+	this.AppId = appId
+	this.Body = body
+	this.Headers = headers
+	this.Type = type_
 	return &this
 }
 
@@ -43,132 +51,100 @@ func NewMessageCreateReqWithDefaults() *MessageCreateReq {
 	return &this
 }
 
-// GetAppId returns the AppId field value if set, zero value otherwise.
+// GetAppId returns the AppId field value
 func (o *MessageCreateReq) GetAppId() string {
-	if o == nil || IsNil(o.AppId) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.AppId
+
+	return o.AppId
 }
 
-// GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
+// GetAppIdOk returns a tuple with the AppId field value
 // and a boolean to check if the value has been set.
 func (o *MessageCreateReq) GetAppIdOk() (*string, bool) {
-	if o == nil || IsNil(o.AppId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.AppId, true
+	return &o.AppId, true
 }
 
-// HasAppId returns a boolean if a field has been set.
-func (o *MessageCreateReq) HasAppId() bool {
-	if o != nil && !IsNil(o.AppId) {
-		return true
-	}
-
-	return false
-}
-
-// SetAppId gets a reference to the given string and assigns it to the AppId field.
+// SetAppId sets field value
 func (o *MessageCreateReq) SetAppId(v string) {
-	o.AppId = &v
+	o.AppId = v
 }
 
-// GetBody returns the Body field value if set, zero value otherwise.
+// GetBody returns the Body field value
 func (o *MessageCreateReq) GetBody() map[string]interface{} {
-	if o == nil || IsNil(o.Body) {
+	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
+
 	return o.Body
 }
 
-// GetBodyOk returns a tuple with the Body field value if set, nil otherwise
+// GetBodyOk returns a tuple with the Body field value
 // and a boolean to check if the value has been set.
 func (o *MessageCreateReq) GetBodyOk() (map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Body) {
+	if o == nil {
 		return map[string]interface{}{}, false
 	}
 	return o.Body, true
 }
 
-// HasBody returns a boolean if a field has been set.
-func (o *MessageCreateReq) HasBody() bool {
-	if o != nil && !IsNil(o.Body) {
-		return true
-	}
-
-	return false
-}
-
-// SetBody gets a reference to the given map[string]interface{} and assigns it to the Body field.
+// SetBody sets field value
 func (o *MessageCreateReq) SetBody(v map[string]interface{}) {
 	o.Body = v
 }
 
-// GetHeaders returns the Headers field value if set, zero value otherwise.
+// GetHeaders returns the Headers field value
 func (o *MessageCreateReq) GetHeaders() map[string]string {
-	if o == nil || IsNil(o.Headers) {
+	if o == nil {
 		var ret map[string]string
 		return ret
 	}
-	return *o.Headers
+
+	return o.Headers
 }
 
-// GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
+// GetHeadersOk returns a tuple with the Headers field value
 // and a boolean to check if the value has been set.
 func (o *MessageCreateReq) GetHeadersOk() (*map[string]string, bool) {
-	if o == nil || IsNil(o.Headers) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Headers, true
+	return &o.Headers, true
 }
 
-// HasHeaders returns a boolean if a field has been set.
-func (o *MessageCreateReq) HasHeaders() bool {
-	if o != nil && !IsNil(o.Headers) {
-		return true
-	}
-
-	return false
-}
-
-// SetHeaders gets a reference to the given map[string]string and assigns it to the Headers field.
+// SetHeaders sets field value
 func (o *MessageCreateReq) SetHeaders(v map[string]string) {
-	o.Headers = &v
+	o.Headers = v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value
 func (o *MessageCreateReq) GetType() string {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *MessageCreateReq) GetTypeOk() (*string, bool) {
-	if o == nil || IsNil(o.Type) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *MessageCreateReq) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType sets field value
 func (o *MessageCreateReq) SetType(v string) {
-	o.Type = &v
+	o.Type = v
 }
 
 func (o MessageCreateReq) MarshalJSON() ([]byte, error) {
@@ -181,19 +157,51 @@ func (o MessageCreateReq) MarshalJSON() ([]byte, error) {
 
 func (o MessageCreateReq) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AppId) {
-		toSerialize["app_id"] = o.AppId
-	}
-	if !IsNil(o.Body) {
-		toSerialize["body"] = o.Body
-	}
-	if !IsNil(o.Headers) {
-		toSerialize["headers"] = o.Headers
-	}
-	if !IsNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["app_id"] = o.AppId
+	toSerialize["body"] = o.Body
+	toSerialize["headers"] = o.Headers
+	toSerialize["type"] = o.Type
 	return toSerialize, nil
+}
+
+func (o *MessageCreateReq) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"app_id",
+		"body",
+		"headers",
+		"type",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varMessageCreateReq := _MessageCreateReq{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varMessageCreateReq)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MessageCreateReq(varMessageCreateReq)
+
+	return err
 }
 
 type NullableMessageCreateReq struct {

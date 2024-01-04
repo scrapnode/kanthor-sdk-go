@@ -13,6 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the AccountGetRes type satisfies the MappedNullable interface at compile time
@@ -20,15 +22,18 @@ var _ MappedNullable = &AccountGetRes{}
 
 // AccountGetRes struct for AccountGetRes
 type AccountGetRes struct {
-	Account *AuthenticatorAccount `json:"account,omitempty"`
+	Account Account `json:"account"`
 }
+
+type _AccountGetRes AccountGetRes
 
 // NewAccountGetRes instantiates a new AccountGetRes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAccountGetRes() *AccountGetRes {
+func NewAccountGetRes(account Account) *AccountGetRes {
 	this := AccountGetRes{}
+	this.Account = account
 	return &this
 }
 
@@ -40,36 +45,28 @@ func NewAccountGetResWithDefaults() *AccountGetRes {
 	return &this
 }
 
-// GetAccount returns the Account field value if set, zero value otherwise.
-func (o *AccountGetRes) GetAccount() AuthenticatorAccount {
-	if o == nil || IsNil(o.Account) {
-		var ret AuthenticatorAccount
+// GetAccount returns the Account field value
+func (o *AccountGetRes) GetAccount() Account {
+	if o == nil {
+		var ret Account
 		return ret
 	}
-	return *o.Account
+
+	return o.Account
 }
 
-// GetAccountOk returns a tuple with the Account field value if set, nil otherwise
+// GetAccountOk returns a tuple with the Account field value
 // and a boolean to check if the value has been set.
-func (o *AccountGetRes) GetAccountOk() (*AuthenticatorAccount, bool) {
-	if o == nil || IsNil(o.Account) {
+func (o *AccountGetRes) GetAccountOk() (*Account, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Account, true
+	return &o.Account, true
 }
 
-// HasAccount returns a boolean if a field has been set.
-func (o *AccountGetRes) HasAccount() bool {
-	if o != nil && !IsNil(o.Account) {
-		return true
-	}
-
-	return false
-}
-
-// SetAccount gets a reference to the given AuthenticatorAccount and assigns it to the Account field.
-func (o *AccountGetRes) SetAccount(v AuthenticatorAccount) {
-	o.Account = &v
+// SetAccount sets field value
+func (o *AccountGetRes) SetAccount(v Account) {
+	o.Account = v
 }
 
 func (o AccountGetRes) MarshalJSON() ([]byte, error) {
@@ -82,10 +79,45 @@ func (o AccountGetRes) MarshalJSON() ([]byte, error) {
 
 func (o AccountGetRes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Account) {
-		toSerialize["account"] = o.Account
-	}
+	toSerialize["account"] = o.Account
 	return toSerialize, nil
+}
+
+func (o *AccountGetRes) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"account",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varAccountGetRes := _AccountGetRes{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varAccountGetRes)
+
+	if err != nil {
+		return err
+	}
+
+	*o = AccountGetRes(varAccountGetRes)
+
+	return err
 }
 
 type NullableAccountGetRes struct {

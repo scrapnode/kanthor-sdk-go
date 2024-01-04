@@ -7,6 +7,7 @@ api_endpoint_rule.go
 api_message.go
 client.go
 configuration.go
+model_account.go
 model_account_get_res.go
 model_application.go
 model_application_create_req.go
@@ -16,7 +17,6 @@ model_application_get_res.go
 model_application_list_res.go
 model_application_update_req.go
 model_application_update_res.go
-model_authenticator_account.go
 model_endpoint.go
 model_endpoint_create_req.go
 model_endpoint_create_res.go

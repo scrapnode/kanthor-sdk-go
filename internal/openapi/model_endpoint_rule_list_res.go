@@ -13,6 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the EndpointRuleListRes type satisfies the MappedNullable interface at compile time
@@ -20,16 +22,20 @@ var _ MappedNullable = &EndpointRuleListRes{}
 
 // EndpointRuleListRes struct for EndpointRuleListRes
 type EndpointRuleListRes struct {
-	Count *int64 `json:"count,omitempty"`
-	Data []EndpointRule `json:"data,omitempty"`
+	Count int64 `json:"count"`
+	Data []EndpointRule `json:"data"`
 }
+
+type _EndpointRuleListRes EndpointRuleListRes
 
 // NewEndpointRuleListRes instantiates a new EndpointRuleListRes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpointRuleListRes() *EndpointRuleListRes {
+func NewEndpointRuleListRes(count int64, data []EndpointRule) *EndpointRuleListRes {
 	this := EndpointRuleListRes{}
+	this.Count = count
+	this.Data = data
 	return &this
 }
 
@@ -41,66 +47,50 @@ func NewEndpointRuleListResWithDefaults() *EndpointRuleListRes {
 	return &this
 }
 
-// GetCount returns the Count field value if set, zero value otherwise.
+// GetCount returns the Count field value
 func (o *EndpointRuleListRes) GetCount() int64 {
-	if o == nil || IsNil(o.Count) {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.Count
+
+	return o.Count
 }
 
-// GetCountOk returns a tuple with the Count field value if set, nil otherwise
+// GetCountOk returns a tuple with the Count field value
 // and a boolean to check if the value has been set.
 func (o *EndpointRuleListRes) GetCountOk() (*int64, bool) {
-	if o == nil || IsNil(o.Count) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Count, true
+	return &o.Count, true
 }
 
-// HasCount returns a boolean if a field has been set.
-func (o *EndpointRuleListRes) HasCount() bool {
-	if o != nil && !IsNil(o.Count) {
-		return true
-	}
-
-	return false
-}
-
-// SetCount gets a reference to the given int64 and assigns it to the Count field.
+// SetCount sets field value
 func (o *EndpointRuleListRes) SetCount(v int64) {
-	o.Count = &v
+	o.Count = v
 }
 
-// GetData returns the Data field value if set, zero value otherwise.
+// GetData returns the Data field value
 func (o *EndpointRuleListRes) GetData() []EndpointRule {
-	if o == nil || IsNil(o.Data) {
+	if o == nil {
 		var ret []EndpointRule
 		return ret
 	}
+
 	return o.Data
 }
 
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *EndpointRuleListRes) GetDataOk() ([]EndpointRule, bool) {
-	if o == nil || IsNil(o.Data) {
+	if o == nil {
 		return nil, false
 	}
 	return o.Data, true
 }
 
-// HasData returns a boolean if a field has been set.
-func (o *EndpointRuleListRes) HasData() bool {
-	if o != nil && !IsNil(o.Data) {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given []EndpointRule and assigns it to the Data field.
+// SetData sets field value
 func (o *EndpointRuleListRes) SetData(v []EndpointRule) {
 	o.Data = v
 }
@@ -115,13 +105,47 @@ func (o EndpointRuleListRes) MarshalJSON() ([]byte, error) {
 
 func (o EndpointRuleListRes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Count) {
-		toSerialize["count"] = o.Count
-	}
-	if !IsNil(o.Data) {
-		toSerialize["data"] = o.Data
-	}
+	toSerialize["count"] = o.Count
+	toSerialize["data"] = o.Data
 	return toSerialize, nil
+}
+
+func (o *EndpointRuleListRes) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"count",
+		"data",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varEndpointRuleListRes := _EndpointRuleListRes{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varEndpointRuleListRes)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EndpointRuleListRes(varEndpointRuleListRes)
+
+	return err
 }
 
 type NullableEndpointRuleListRes struct {

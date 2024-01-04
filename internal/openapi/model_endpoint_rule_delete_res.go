@@ -13,6 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the EndpointRuleDeleteRes type satisfies the MappedNullable interface at compile time
@@ -20,23 +22,34 @@ var _ MappedNullable = &EndpointRuleDeleteRes{}
 
 // EndpointRuleDeleteRes struct for EndpointRuleDeleteRes
 type EndpointRuleDeleteRes struct {
-	ConditionExpression *string `json:"condition_expression,omitempty"`
-	ConditionSource *string `json:"condition_source,omitempty"`
-	CreatedAt *int64 `json:"created_at,omitempty"`
-	EpId *string `json:"ep_id,omitempty"`
-	Exclusionary *bool `json:"exclusionary,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Priority *int64 `json:"priority,omitempty"`
-	UpdatedAt *int64 `json:"updated_at,omitempty"`
+	ConditionExpression string `json:"condition_expression"`
+	ConditionSource string `json:"condition_source"`
+	CreatedAt int64 `json:"created_at"`
+	EpId string `json:"ep_id"`
+	Exclusionary bool `json:"exclusionary"`
+	Id string `json:"id"`
+	Name string `json:"name"`
+	Priority int64 `json:"priority"`
+	UpdatedAt int64 `json:"updated_at"`
 }
+
+type _EndpointRuleDeleteRes EndpointRuleDeleteRes
 
 // NewEndpointRuleDeleteRes instantiates a new EndpointRuleDeleteRes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpointRuleDeleteRes() *EndpointRuleDeleteRes {
+func NewEndpointRuleDeleteRes(conditionExpression string, conditionSource string, createdAt int64, epId string, exclusionary bool, id string, name string, priority int64, updatedAt int64) *EndpointRuleDeleteRes {
 	this := EndpointRuleDeleteRes{}
+	this.ConditionExpression = conditionExpression
+	this.ConditionSource = conditionSource
+	this.CreatedAt = createdAt
+	this.EpId = epId
+	this.Exclusionary = exclusionary
+	this.Id = id
+	this.Name = name
+	this.Priority = priority
+	this.UpdatedAt = updatedAt
 	return &this
 }
 
@@ -48,292 +61,220 @@ func NewEndpointRuleDeleteResWithDefaults() *EndpointRuleDeleteRes {
 	return &this
 }
 
-// GetConditionExpression returns the ConditionExpression field value if set, zero value otherwise.
+// GetConditionExpression returns the ConditionExpression field value
 func (o *EndpointRuleDeleteRes) GetConditionExpression() string {
-	if o == nil || IsNil(o.ConditionExpression) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ConditionExpression
+
+	return o.ConditionExpression
 }
 
-// GetConditionExpressionOk returns a tuple with the ConditionExpression field value if set, nil otherwise
+// GetConditionExpressionOk returns a tuple with the ConditionExpression field value
 // and a boolean to check if the value has been set.
 func (o *EndpointRuleDeleteRes) GetConditionExpressionOk() (*string, bool) {
-	if o == nil || IsNil(o.ConditionExpression) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ConditionExpression, true
+	return &o.ConditionExpression, true
 }
 
-// HasConditionExpression returns a boolean if a field has been set.
-func (o *EndpointRuleDeleteRes) HasConditionExpression() bool {
-	if o != nil && !IsNil(o.ConditionExpression) {
-		return true
-	}
-
-	return false
-}
-
-// SetConditionExpression gets a reference to the given string and assigns it to the ConditionExpression field.
+// SetConditionExpression sets field value
 func (o *EndpointRuleDeleteRes) SetConditionExpression(v string) {
-	o.ConditionExpression = &v
+	o.ConditionExpression = v
 }
 
-// GetConditionSource returns the ConditionSource field value if set, zero value otherwise.
+// GetConditionSource returns the ConditionSource field value
 func (o *EndpointRuleDeleteRes) GetConditionSource() string {
-	if o == nil || IsNil(o.ConditionSource) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ConditionSource
+
+	return o.ConditionSource
 }
 
-// GetConditionSourceOk returns a tuple with the ConditionSource field value if set, nil otherwise
+// GetConditionSourceOk returns a tuple with the ConditionSource field value
 // and a boolean to check if the value has been set.
 func (o *EndpointRuleDeleteRes) GetConditionSourceOk() (*string, bool) {
-	if o == nil || IsNil(o.ConditionSource) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ConditionSource, true
+	return &o.ConditionSource, true
 }
 
-// HasConditionSource returns a boolean if a field has been set.
-func (o *EndpointRuleDeleteRes) HasConditionSource() bool {
-	if o != nil && !IsNil(o.ConditionSource) {
-		return true
-	}
-
-	return false
-}
-
-// SetConditionSource gets a reference to the given string and assigns it to the ConditionSource field.
+// SetConditionSource sets field value
 func (o *EndpointRuleDeleteRes) SetConditionSource(v string) {
-	o.ConditionSource = &v
+	o.ConditionSource = v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+// GetCreatedAt returns the CreatedAt field value
 func (o *EndpointRuleDeleteRes) GetCreatedAt() int64 {
-	if o == nil || IsNil(o.CreatedAt) {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.CreatedAt
+
+	return o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *EndpointRuleDeleteRes) GetCreatedAtOk() (*int64, bool) {
-	if o == nil || IsNil(o.CreatedAt) {
+	if o == nil {
 		return nil, false
 	}
-	return o.CreatedAt, true
+	return &o.CreatedAt, true
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *EndpointRuleDeleteRes) HasCreatedAt() bool {
-	if o != nil && !IsNil(o.CreatedAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
+// SetCreatedAt sets field value
 func (o *EndpointRuleDeleteRes) SetCreatedAt(v int64) {
-	o.CreatedAt = &v
+	o.CreatedAt = v
 }
 
-// GetEpId returns the EpId field value if set, zero value otherwise.
+// GetEpId returns the EpId field value
 func (o *EndpointRuleDeleteRes) GetEpId() string {
-	if o == nil || IsNil(o.EpId) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.EpId
+
+	return o.EpId
 }
 
-// GetEpIdOk returns a tuple with the EpId field value if set, nil otherwise
+// GetEpIdOk returns a tuple with the EpId field value
 // and a boolean to check if the value has been set.
 func (o *EndpointRuleDeleteRes) GetEpIdOk() (*string, bool) {
-	if o == nil || IsNil(o.EpId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.EpId, true
+	return &o.EpId, true
 }
 
-// HasEpId returns a boolean if a field has been set.
-func (o *EndpointRuleDeleteRes) HasEpId() bool {
-	if o != nil && !IsNil(o.EpId) {
-		return true
-	}
-
-	return false
-}
-
-// SetEpId gets a reference to the given string and assigns it to the EpId field.
+// SetEpId sets field value
 func (o *EndpointRuleDeleteRes) SetEpId(v string) {
-	o.EpId = &v
+	o.EpId = v
 }
 
-// GetExclusionary returns the Exclusionary field value if set, zero value otherwise.
+// GetExclusionary returns the Exclusionary field value
 func (o *EndpointRuleDeleteRes) GetExclusionary() bool {
-	if o == nil || IsNil(o.Exclusionary) {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Exclusionary
+
+	return o.Exclusionary
 }
 
-// GetExclusionaryOk returns a tuple with the Exclusionary field value if set, nil otherwise
+// GetExclusionaryOk returns a tuple with the Exclusionary field value
 // and a boolean to check if the value has been set.
 func (o *EndpointRuleDeleteRes) GetExclusionaryOk() (*bool, bool) {
-	if o == nil || IsNil(o.Exclusionary) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Exclusionary, true
+	return &o.Exclusionary, true
 }
 
-// HasExclusionary returns a boolean if a field has been set.
-func (o *EndpointRuleDeleteRes) HasExclusionary() bool {
-	if o != nil && !IsNil(o.Exclusionary) {
-		return true
-	}
-
-	return false
-}
-
-// SetExclusionary gets a reference to the given bool and assigns it to the Exclusionary field.
+// SetExclusionary sets field value
 func (o *EndpointRuleDeleteRes) SetExclusionary(v bool) {
-	o.Exclusionary = &v
+	o.Exclusionary = v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value
 func (o *EndpointRuleDeleteRes) GetId() string {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *EndpointRuleDeleteRes) GetIdOk() (*string, bool) {
-	if o == nil || IsNil(o.Id) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *EndpointRuleDeleteRes) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value
 func (o *EndpointRuleDeleteRes) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *EndpointRuleDeleteRes) GetName() string {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *EndpointRuleDeleteRes) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *EndpointRuleDeleteRes) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *EndpointRuleDeleteRes) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetPriority returns the Priority field value if set, zero value otherwise.
+// GetPriority returns the Priority field value
 func (o *EndpointRuleDeleteRes) GetPriority() int64 {
-	if o == nil || IsNil(o.Priority) {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.Priority
+
+	return o.Priority
 }
 
-// GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
+// GetPriorityOk returns a tuple with the Priority field value
 // and a boolean to check if the value has been set.
 func (o *EndpointRuleDeleteRes) GetPriorityOk() (*int64, bool) {
-	if o == nil || IsNil(o.Priority) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Priority, true
+	return &o.Priority, true
 }
 
-// HasPriority returns a boolean if a field has been set.
-func (o *EndpointRuleDeleteRes) HasPriority() bool {
-	if o != nil && !IsNil(o.Priority) {
-		return true
-	}
-
-	return false
-}
-
-// SetPriority gets a reference to the given int64 and assigns it to the Priority field.
+// SetPriority sets field value
 func (o *EndpointRuleDeleteRes) SetPriority(v int64) {
-	o.Priority = &v
+	o.Priority = v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+// GetUpdatedAt returns the UpdatedAt field value
 func (o *EndpointRuleDeleteRes) GetUpdatedAt() int64 {
-	if o == nil || IsNil(o.UpdatedAt) {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.UpdatedAt
+
+	return o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
 // and a boolean to check if the value has been set.
 func (o *EndpointRuleDeleteRes) GetUpdatedAtOk() (*int64, bool) {
-	if o == nil || IsNil(o.UpdatedAt) {
+	if o == nil {
 		return nil, false
 	}
-	return o.UpdatedAt, true
+	return &o.UpdatedAt, true
 }
 
-// HasUpdatedAt returns a boolean if a field has been set.
-func (o *EndpointRuleDeleteRes) HasUpdatedAt() bool {
-	if o != nil && !IsNil(o.UpdatedAt) {
-		return true
-	}
-
-	return false
-}
-
-// SetUpdatedAt gets a reference to the given int64 and assigns it to the UpdatedAt field.
+// SetUpdatedAt sets field value
 func (o *EndpointRuleDeleteRes) SetUpdatedAt(v int64) {
-	o.UpdatedAt = &v
+	o.UpdatedAt = v
 }
 
 func (o EndpointRuleDeleteRes) MarshalJSON() ([]byte, error) {
@@ -346,34 +287,61 @@ func (o EndpointRuleDeleteRes) MarshalJSON() ([]byte, error) {
 
 func (o EndpointRuleDeleteRes) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ConditionExpression) {
-		toSerialize["condition_expression"] = o.ConditionExpression
-	}
-	if !IsNil(o.ConditionSource) {
-		toSerialize["condition_source"] = o.ConditionSource
-	}
-	if !IsNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if !IsNil(o.EpId) {
-		toSerialize["ep_id"] = o.EpId
-	}
-	if !IsNil(o.Exclusionary) {
-		toSerialize["exclusionary"] = o.Exclusionary
-	}
-	if !IsNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !IsNil(o.Priority) {
-		toSerialize["priority"] = o.Priority
-	}
-	if !IsNil(o.UpdatedAt) {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
+	toSerialize["condition_expression"] = o.ConditionExpression
+	toSerialize["condition_source"] = o.ConditionSource
+	toSerialize["created_at"] = o.CreatedAt
+	toSerialize["ep_id"] = o.EpId
+	toSerialize["exclusionary"] = o.Exclusionary
+	toSerialize["id"] = o.Id
+	toSerialize["name"] = o.Name
+	toSerialize["priority"] = o.Priority
+	toSerialize["updated_at"] = o.UpdatedAt
 	return toSerialize, nil
+}
+
+func (o *EndpointRuleDeleteRes) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"condition_expression",
+		"condition_source",
+		"created_at",
+		"ep_id",
+		"exclusionary",
+		"id",
+		"name",
+		"priority",
+		"updated_at",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varEndpointRuleDeleteRes := _EndpointRuleDeleteRes{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varEndpointRuleDeleteRes)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EndpointRuleDeleteRes(varEndpointRuleDeleteRes)
+
+	return err
 }
 
 type NullableEndpointRuleDeleteRes struct {

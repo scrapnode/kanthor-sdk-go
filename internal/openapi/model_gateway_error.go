@@ -13,6 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the GatewayError type satisfies the MappedNullable interface at compile time
@@ -20,16 +22,20 @@ var _ MappedNullable = &GatewayError{}
 
 // GatewayError struct for GatewayError
 type GatewayError struct {
-	Code *string `json:"code,omitempty"`
-	Error *string `json:"error,omitempty"`
+	Code string `json:"code"`
+	Error string `json:"error"`
 }
+
+type _GatewayError GatewayError
 
 // NewGatewayError instantiates a new GatewayError object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGatewayError() *GatewayError {
+func NewGatewayError(code string, error_ string) *GatewayError {
 	this := GatewayError{}
+	this.Code = code
+	this.Error = error_
 	return &this
 }
 
@@ -41,68 +47,52 @@ func NewGatewayErrorWithDefaults() *GatewayError {
 	return &this
 }
 
-// GetCode returns the Code field value if set, zero value otherwise.
+// GetCode returns the Code field value
 func (o *GatewayError) GetCode() string {
-	if o == nil || IsNil(o.Code) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Code
+
+	return o.Code
 }
 
-// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
 func (o *GatewayError) GetCodeOk() (*string, bool) {
-	if o == nil || IsNil(o.Code) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Code, true
+	return &o.Code, true
 }
 
-// HasCode returns a boolean if a field has been set.
-func (o *GatewayError) HasCode() bool {
-	if o != nil && !IsNil(o.Code) {
-		return true
-	}
-
-	return false
-}
-
-// SetCode gets a reference to the given string and assigns it to the Code field.
+// SetCode sets field value
 func (o *GatewayError) SetCode(v string) {
-	o.Code = &v
+	o.Code = v
 }
 
-// GetError returns the Error field value if set, zero value otherwise.
+// GetError returns the Error field value
 func (o *GatewayError) GetError() string {
-	if o == nil || IsNil(o.Error) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Error
+
+	return o.Error
 }
 
-// GetErrorOk returns a tuple with the Error field value if set, nil otherwise
+// GetErrorOk returns a tuple with the Error field value
 // and a boolean to check if the value has been set.
 func (o *GatewayError) GetErrorOk() (*string, bool) {
-	if o == nil || IsNil(o.Error) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Error, true
+	return &o.Error, true
 }
 
-// HasError returns a boolean if a field has been set.
-func (o *GatewayError) HasError() bool {
-	if o != nil && !IsNil(o.Error) {
-		return true
-	}
-
-	return false
-}
-
-// SetError gets a reference to the given string and assigns it to the Error field.
+// SetError sets field value
 func (o *GatewayError) SetError(v string) {
-	o.Error = &v
+	o.Error = v
 }
 
 func (o GatewayError) MarshalJSON() ([]byte, error) {
@@ -115,13 +105,47 @@ func (o GatewayError) MarshalJSON() ([]byte, error) {
 
 func (o GatewayError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Code) {
-		toSerialize["code"] = o.Code
-	}
-	if !IsNil(o.Error) {
-		toSerialize["error"] = o.Error
-	}
+	toSerialize["code"] = o.Code
+	toSerialize["error"] = o.Error
 	return toSerialize, nil
+}
+
+func (o *GatewayError) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"code",
+		"error",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varGatewayError := _GatewayError{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varGatewayError)
+
+	if err != nil {
+		return err
+	}
+
+	*o = GatewayError(varGatewayError)
+
+	return err
 }
 
 type NullableGatewayError struct {
