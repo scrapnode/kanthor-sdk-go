@@ -13,6 +13,8 @@ package openapi
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the EndpointCreateReq type satisfies the MappedNullable interface at compile time
@@ -20,18 +22,24 @@ var _ MappedNullable = &EndpointCreateReq{}
 
 // EndpointCreateReq struct for EndpointCreateReq
 type EndpointCreateReq struct {
-	AppId *string `json:"app_id,omitempty"`
-	Method *string `json:"method,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Uri *string `json:"uri,omitempty"`
+	AppId string `json:"app_id"`
+	Method string `json:"method"`
+	Name string `json:"name"`
+	Uri string `json:"uri"`
 }
+
+type _EndpointCreateReq EndpointCreateReq
 
 // NewEndpointCreateReq instantiates a new EndpointCreateReq object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpointCreateReq() *EndpointCreateReq {
+func NewEndpointCreateReq(appId string, method string, name string, uri string) *EndpointCreateReq {
 	this := EndpointCreateReq{}
+	this.AppId = appId
+	this.Method = method
+	this.Name = name
+	this.Uri = uri
 	return &this
 }
 
@@ -43,132 +51,100 @@ func NewEndpointCreateReqWithDefaults() *EndpointCreateReq {
 	return &this
 }
 
-// GetAppId returns the AppId field value if set, zero value otherwise.
+// GetAppId returns the AppId field value
 func (o *EndpointCreateReq) GetAppId() string {
-	if o == nil || IsNil(o.AppId) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.AppId
+
+	return o.AppId
 }
 
-// GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
+// GetAppIdOk returns a tuple with the AppId field value
 // and a boolean to check if the value has been set.
 func (o *EndpointCreateReq) GetAppIdOk() (*string, bool) {
-	if o == nil || IsNil(o.AppId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.AppId, true
+	return &o.AppId, true
 }
 
-// HasAppId returns a boolean if a field has been set.
-func (o *EndpointCreateReq) HasAppId() bool {
-	if o != nil && !IsNil(o.AppId) {
-		return true
-	}
-
-	return false
-}
-
-// SetAppId gets a reference to the given string and assigns it to the AppId field.
+// SetAppId sets field value
 func (o *EndpointCreateReq) SetAppId(v string) {
-	o.AppId = &v
+	o.AppId = v
 }
 
-// GetMethod returns the Method field value if set, zero value otherwise.
+// GetMethod returns the Method field value
 func (o *EndpointCreateReq) GetMethod() string {
-	if o == nil || IsNil(o.Method) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Method
+
+	return o.Method
 }
 
-// GetMethodOk returns a tuple with the Method field value if set, nil otherwise
+// GetMethodOk returns a tuple with the Method field value
 // and a boolean to check if the value has been set.
 func (o *EndpointCreateReq) GetMethodOk() (*string, bool) {
-	if o == nil || IsNil(o.Method) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Method, true
+	return &o.Method, true
 }
 
-// HasMethod returns a boolean if a field has been set.
-func (o *EndpointCreateReq) HasMethod() bool {
-	if o != nil && !IsNil(o.Method) {
-		return true
-	}
-
-	return false
-}
-
-// SetMethod gets a reference to the given string and assigns it to the Method field.
+// SetMethod sets field value
 func (o *EndpointCreateReq) SetMethod(v string) {
-	o.Method = &v
+	o.Method = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *EndpointCreateReq) GetName() string {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *EndpointCreateReq) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *EndpointCreateReq) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *EndpointCreateReq) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetUri returns the Uri field value if set, zero value otherwise.
+// GetUri returns the Uri field value
 func (o *EndpointCreateReq) GetUri() string {
-	if o == nil || IsNil(o.Uri) {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Uri
+
+	return o.Uri
 }
 
-// GetUriOk returns a tuple with the Uri field value if set, nil otherwise
+// GetUriOk returns a tuple with the Uri field value
 // and a boolean to check if the value has been set.
 func (o *EndpointCreateReq) GetUriOk() (*string, bool) {
-	if o == nil || IsNil(o.Uri) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Uri, true
+	return &o.Uri, true
 }
 
-// HasUri returns a boolean if a field has been set.
-func (o *EndpointCreateReq) HasUri() bool {
-	if o != nil && !IsNil(o.Uri) {
-		return true
-	}
-
-	return false
-}
-
-// SetUri gets a reference to the given string and assigns it to the Uri field.
+// SetUri sets field value
 func (o *EndpointCreateReq) SetUri(v string) {
-	o.Uri = &v
+	o.Uri = v
 }
 
 func (o EndpointCreateReq) MarshalJSON() ([]byte, error) {
@@ -181,19 +157,51 @@ func (o EndpointCreateReq) MarshalJSON() ([]byte, error) {
 
 func (o EndpointCreateReq) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AppId) {
-		toSerialize["app_id"] = o.AppId
-	}
-	if !IsNil(o.Method) {
-		toSerialize["method"] = o.Method
-	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !IsNil(o.Uri) {
-		toSerialize["uri"] = o.Uri
-	}
+	toSerialize["app_id"] = o.AppId
+	toSerialize["method"] = o.Method
+	toSerialize["name"] = o.Name
+	toSerialize["uri"] = o.Uri
 	return toSerialize, nil
+}
+
+func (o *EndpointCreateReq) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"app_id",
+		"method",
+		"name",
+		"uri",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varEndpointCreateReq := _EndpointCreateReq{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varEndpointCreateReq)
+
+	if err != nil {
+		return err
+	}
+
+	*o = EndpointCreateReq(varEndpointCreateReq)
+
+	return err
 }
 
 type NullableEndpointCreateReq struct {
