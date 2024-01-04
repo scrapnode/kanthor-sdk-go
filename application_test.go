@@ -17,8 +17,9 @@ func TestApplication(t *testing.T) {
 	t.Run("success", func(st *testing.T) {
 		createCtx, cancel := Context()
 		defer cancel()
-		createReq := &kanthorsdk.ApplicationCreateReq{}
-		createReq.SetName(f.App().Name())
+		createReq := &kanthorsdk.ApplicationCreateReq{
+			Name: f.App().Name(),
+		}
 		createRes, err := sdk.Application.Create(createCtx, createReq)
 		assert.Nil(st, err)
 		assert.NotEmpty(st, createRes.Id)
@@ -27,31 +28,32 @@ func TestApplication(t *testing.T) {
 		assert.Greater(st, createRes.CreatedAt, int64(0))
 		assert.Greater(st, createRes.UpdatedAt, int64(0))
 
+		updateCtx, cancel := Context()
+		defer cancel()
+		updateReq := &kanthorsdk.ApplicationUpdateReq{
+			Name: f.App().Name(),
+		}
+		updateRes, err := sdk.Application.Update(updateCtx, createRes.Id, updateReq)
+		assert.Nil(st, err)
+		assert.NotEmpty(st, updateRes.Id)
+		assert.NotEmpty(st, updateRes.WsId)
+		assert.NotEqual(st, updateRes.Name, createRes.Name)
+		assert.Equal(st, updateRes.CreatedAt, createRes.CreatedAt)
+		assert.Greater(st, updateRes.UpdatedAt, createRes.UpdatedAt)
+
 		getCtx, cancel := Context()
 		defer cancel()
 		getRes, err := sdk.Application.Get(getCtx, createRes.Id)
 		assert.Nil(st, err)
 		assert.NotEmpty(st, getRes.Id)
 		assert.NotEmpty(st, getRes.WsId)
-		assert.NotEmpty(st, getRes.Name)
-		assert.Greater(st, getRes.CreatedAt, int64(0))
-		assert.Greater(st, getRes.UpdatedAt, int64(0))
-
-		updateCtx, cancel := Context()
-		defer cancel()
-		updateReq := &kanthorsdk.ApplicationUpdateReq{}
-		updateReq.SetName(f.App().Name())
-		updateRes, err := sdk.Application.Update(updateCtx, createRes.Id, updateReq)
-		assert.Nil(st, err)
-		assert.NotEmpty(st, updateRes.Id)
-		assert.NotEmpty(st, updateRes.WsId)
-		assert.NotEmpty(st, updateRes.Name)
-		assert.Greater(st, updateRes.CreatedAt, int64(0))
-		assert.Greater(st, updateRes.UpdatedAt, int64(0))
+		assert.Equal(st, getRes.Name, updateRes.Name)
+		assert.Equal(st, getRes.CreatedAt, createRes.CreatedAt)
+		assert.Greater(st, getRes.UpdatedAt, createRes.UpdatedAt)
 
 		ctx, cancel := Context()
 		defer cancel()
-		listRes, err := sdk.Application.List(ctx)
+		listRes, err := sdk.Application.List(ctx, kanthorsdk.WithIds([]string{getRes.Id}))
 		assert.Nil(st, err)
 		assert.NotNil(st, listRes.Data)
 		assert.GreaterOrEqual(st, listRes.Count, int64(1))

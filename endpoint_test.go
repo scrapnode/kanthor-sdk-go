@@ -21,11 +21,12 @@ func TestEndpoint(t *testing.T) {
 	t.Run("success", func(st *testing.T) {
 		createCtx, cancel := Context()
 		defer cancel()
-		createReq := &kanthorsdk.EndpointCreateReq{}
-		createReq.SetAppId(appId)
-		createReq.SetName(f.App().Name())
-		createReq.SetMethod(http.MethodPost)
-		createReq.SetUri(f.Internet().URL())
+		createReq := &kanthorsdk.EndpointCreateReq{
+			AppId:  appId,
+			Name:   f.App().Name(),
+			Method: http.MethodPost,
+			Uri:    f.Internet().URL(),
+		}
 		createRes, err := sdk.Endpoint.Create(createCtx, createReq)
 		assert.Nil(st, err)
 		assert.NotEmpty(st, createRes.Id)
@@ -36,36 +37,36 @@ func TestEndpoint(t *testing.T) {
 		assert.Greater(st, createRes.CreatedAt, int64(0))
 		assert.Greater(st, createRes.UpdatedAt, int64(0))
 
+		updateCtx, cancel := Context()
+		defer cancel()
+		updateReq := &kanthorsdk.EndpointUpdateReq{
+			Name:   f.App().Name(),
+			Method: http.MethodPut,
+		}
+		updateRes, err := sdk.Endpoint.Update(updateCtx, createRes.Id, updateReq)
+		assert.Nil(st, err)
+		assert.NotEmpty(st, updateRes.Id)
+		assert.NotEmpty(st, updateRes.AppId)
+		assert.NotEqual(st, updateRes.Name, createRes.Name)
+		assert.NotEqual(st, updateRes.Method, createRes.Method)
+		assert.Equal(st, updateRes.CreatedAt, createRes.CreatedAt)
+		assert.Greater(st, updateRes.UpdatedAt, createRes.UpdatedAt)
+
 		getCtx, cancel := Context()
 		defer cancel()
 		getRes, err := sdk.Endpoint.Get(getCtx, createRes.Id)
 		assert.Nil(st, err)
 		assert.NotEmpty(st, getRes.Id)
 		assert.NotEmpty(st, getRes.AppId)
-		assert.NotEmpty(st, getRes.Name)
-		assert.NotEmpty(st, getRes.Method)
-		assert.NotEmpty(st, getRes.Uri)
-		assert.Greater(st, getRes.CreatedAt, int64(0))
-		assert.Greater(st, getRes.UpdatedAt, int64(0))
-
-		updateCtx, cancel := Context()
-		defer cancel()
-		updateReq := &kanthorsdk.EndpointUpdateReq{}
-		updateReq.SetName(f.App().Name())
-		updateReq.SetMethod(http.MethodPut)
-		updateRes, err := sdk.Endpoint.Update(updateCtx, createRes.Id, updateReq)
-		assert.Nil(st, err)
-		assert.NotEmpty(st, updateRes.Id)
-		assert.NotEmpty(st, updateRes.AppId)
-		assert.NotEmpty(st, updateRes.Name)
-		assert.NotEmpty(st, updateRes.Method)
-		assert.NotEmpty(st, updateRes.Uri)
-		assert.Greater(st, updateRes.CreatedAt, int64(0))
-		assert.Greater(st, updateRes.UpdatedAt, int64(0))
+		assert.Equal(st, getRes.Name, updateRes.Name)
+		assert.Equal(st, getRes.Method, updateRes.Method)
+		assert.Equal(st, getRes.Uri, createRes.Uri)
+		assert.Equal(st, getRes.CreatedAt, createRes.CreatedAt)
+		assert.Greater(st, getRes.UpdatedAt, createRes.UpdatedAt)
 
 		ctx, cancel := Context()
 		defer cancel()
-		listRes, err := sdk.Endpoint.List(ctx)
+		listRes, err := sdk.Endpoint.List(ctx, kanthorsdk.WithIds([]string{getRes.Id}))
 		assert.Nil(st, err)
 		assert.NotNil(st, listRes.Data)
 		assert.GreaterOrEqual(st, listRes.Count, int64(1))

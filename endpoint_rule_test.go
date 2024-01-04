@@ -20,24 +20,46 @@ func TestEndpointRule(t *testing.T) {
 	t.Run("success", func(st *testing.T) {
 		createCtx, cancel := Context()
 		defer cancel()
-		createReq := &kanthorsdk.EndpointRuleCreateReq{}
-		createReq.SetEpId(epId)
-		createReq.SetName(f.App().Name())
-		createReq.SetExclusionary(true)
-		createReq.SetPriority(1)
-		createReq.SetConditionExpression("::any")
-		createReq.SetConditionSource("type")
+		createReq := &kanthorsdk.EndpointRuleCreateReq{
+			EpId:                epId,
+			Name:                f.App().Name(),
+			Exclusionary:        true,
+			Priority:            1,
+			ConditionSource:     "type",
+			ConditionExpression: "any::",
+		}
 		createRes, err := sdk.EndpointRule.Create(createCtx, createReq)
 		assert.Nil(st, err)
 		assert.NotEmpty(st, createRes.Id)
 		assert.NotEmpty(st, createRes.EpId)
 		assert.NotEmpty(st, createRes.Name)
 		assert.True(st, createRes.Exclusionary)
-		assert.GreaterOrEqual(st, createRes.Priority, int64(1))
+		assert.Equal(st, createRes.Priority, int64(1))
 		assert.NotEmpty(st, createRes.ConditionExpression)
 		assert.NotEmpty(st, createRes.ConditionSource)
 		assert.Greater(st, createRes.CreatedAt, int64(0))
 		assert.Greater(st, createRes.UpdatedAt, int64(0))
+
+		updateCtx, cancel := Context()
+		defer cancel()
+		updateReq := &kanthorsdk.EndpointRuleUpdateReq{
+			Name:                f.App().Name(),
+			Exclusionary:        false,
+			Priority:            createRes.Priority + 1,
+			ConditionSource:     createReq.ConditionSource,
+			ConditionExpression: createReq.ConditionExpression,
+		}
+		updateRes, err := sdk.EndpointRule.Update(updateCtx, createRes.Id, updateReq)
+		assert.Nil(st, err)
+		assert.NotEmpty(st, updateRes.Id)
+		assert.NotEmpty(st, updateRes.EpId)
+		assert.NotEqual(st, updateRes.Name, createRes.Name)
+		assert.False(st, updateRes.Exclusionary)
+		assert.GreaterOrEqual(st, updateRes.Priority, int64(createRes.Priority+1))
+		assert.NotEmpty(st, updateRes.ConditionExpression)
+		assert.NotEmpty(st, updateRes.ConditionSource)
+		assert.Equal(st, updateRes.CreatedAt, createRes.CreatedAt)
+		assert.Greater(st, updateRes.UpdatedAt, createRes.UpdatedAt)
 
 		getCtx, cancel := Context()
 		defer cancel()
@@ -45,37 +67,17 @@ func TestEndpointRule(t *testing.T) {
 		assert.Nil(st, err)
 		assert.NotEmpty(st, getRes.Id)
 		assert.NotEmpty(st, getRes.EpId)
-		assert.NotEmpty(st, getRes.Name)
-		assert.True(st, getRes.Exclusionary)
-		assert.GreaterOrEqual(st, getRes.Priority, int64(1))
-		assert.NotEmpty(st, getRes.ConditionExpression)
-		assert.NotEmpty(st, getRes.ConditionSource)
-		assert.Greater(st, getRes.CreatedAt, int64(0))
-		assert.Greater(st, getRes.UpdatedAt, int64(0))
-
-		updateCtx, cancel := Context()
-		defer cancel()
-		updateReq := &kanthorsdk.EndpointRuleUpdateReq{}
-		updateReq.SetName(f.App().Name())
-		updateReq.SetPriority(createRes.Priority + 1)
-		updateReq.SetExclusionary(false)
-		updateReq.SetConditionSource(getRes.ConditionSource)
-		updateReq.SetConditionExpression(getRes.ConditionExpression)
-		updateRes, err := sdk.EndpointRule.Update(updateCtx, createRes.Id, updateReq)
-		assert.Nil(st, err)
-		assert.NotEmpty(st, updateRes.Id)
-		assert.NotEmpty(st, updateRes.EpId)
-		assert.NotEmpty(st, updateRes.Name)
-		assert.False(st, updateRes.Exclusionary)
-		assert.GreaterOrEqual(st, updateRes.Priority, int64(createRes.Priority+1))
-		assert.NotEmpty(st, updateRes.ConditionExpression)
-		assert.NotEmpty(st, updateRes.ConditionSource)
-		assert.Greater(st, updateRes.CreatedAt, int64(0))
-		assert.Greater(st, updateRes.UpdatedAt, int64(0))
+		assert.Equal(st, getRes.Name, updateRes.Name)
+		assert.False(st, getRes.Exclusionary)
+		assert.Equal(st, getRes.Priority, updateRes.Priority)
+		assert.Equal(st, getRes.ConditionExpression, createRes.ConditionExpression)
+		assert.Equal(st, getRes.ConditionSource, createRes.ConditionSource)
+		assert.Equal(st, getRes.CreatedAt, createRes.CreatedAt)
+		assert.Greater(st, getRes.UpdatedAt, createRes.UpdatedAt)
 
 		ctx, cancel := Context()
 		defer cancel()
-		listRes, err := sdk.EndpointRule.List(ctx)
+		listRes, err := sdk.EndpointRule.List(ctx, kanthorsdk.WithIds([]string{getRes.Id}))
 		assert.Nil(st, err)
 		assert.NotNil(st, listRes.Data)
 		assert.GreaterOrEqual(st, listRes.Count, int64(1))
