@@ -22,5 +22,6 @@ jobs:
         run: |
           git config user.name "Kanthor SDK Generator Bot"
           git config user.email "<>"
+          git add internal/openapi
           git commit -m "update($(date +%Y.%-m%d.%-H%M)): auto generator"
           git push origin
