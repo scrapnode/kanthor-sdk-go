@@ -6,16 +6,17 @@ import (
 	"github.com/scrapnode/kanthor-sdk-go/internal/openapi"
 )
 
-type Account struct {
-	api *openapi.APIClient
-}
-
 type (
 	AccountGetRes = openapi.AccountGetRes
 )
 
+type Account struct {
+	api *openapi.APIClient
+}
+
 func (instance *Account) Get(ctx context.Context) (*AccountGetRes, error) {
 	request := instance.api.AccountAPI.AccountMeGet(ctx)
+
 	response, res, err := request.Execute()
 	if err != nil {
 		return nil, errorify(err, res)

@@ -21,11 +21,11 @@ var _ MappedNullable = &EndpointCreateRes{}
 // EndpointCreateRes struct for EndpointCreateRes
 type EndpointCreateRes struct {
 	AppId *string `json:"app_id,omitempty"`
-	CreatedAt *int32 `json:"created_at,omitempty"`
+	CreatedAt *int64 `json:"created_at,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Method *string `json:"method,omitempty"`
 	Name *string `json:"name,omitempty"`
-	UpdatedAt *int32 `json:"updated_at,omitempty"`
+	UpdatedAt *int64 `json:"updated_at,omitempty"`
 	Uri *string `json:"uri,omitempty"`
 }
 
@@ -79,9 +79,9 @@ func (o *EndpointCreateRes) SetAppId(v string) {
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *EndpointCreateRes) GetCreatedAt() int32 {
+func (o *EndpointCreateRes) GetCreatedAt() int64 {
 	if o == nil || IsNil(o.CreatedAt) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CreatedAt
@@ -89,7 +89,7 @@ func (o *EndpointCreateRes) GetCreatedAt() int32 {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointCreateRes) GetCreatedAtOk() (*int32, bool) {
+func (o *EndpointCreateRes) GetCreatedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
@@ -105,8 +105,8 @@ func (o *EndpointCreateRes) HasCreatedAt() bool {
 	return false
 }
 
-// SetCreatedAt gets a reference to the given int32 and assigns it to the CreatedAt field.
-func (o *EndpointCreateRes) SetCreatedAt(v int32) {
+// SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
+func (o *EndpointCreateRes) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
 
@@ -207,9 +207,9 @@ func (o *EndpointCreateRes) SetName(v string) {
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *EndpointCreateRes) GetUpdatedAt() int32 {
+func (o *EndpointCreateRes) GetUpdatedAt() int64 {
 	if o == nil || IsNil(o.UpdatedAt) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UpdatedAt
@@ -217,7 +217,7 @@ func (o *EndpointCreateRes) GetUpdatedAt() int32 {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointCreateRes) GetUpdatedAtOk() (*int32, bool) {
+func (o *EndpointCreateRes) GetUpdatedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
@@ -233,8 +233,8 @@ func (o *EndpointCreateRes) HasUpdatedAt() bool {
 	return false
 }
 
-// SetUpdatedAt gets a reference to the given int32 and assigns it to the UpdatedAt field.
-func (o *EndpointCreateRes) SetUpdatedAt(v int32) {
+// SetUpdatedAt gets a reference to the given int64 and assigns it to the UpdatedAt field.
+func (o *EndpointCreateRes) SetUpdatedAt(v int64) {
 	o.UpdatedAt = &v
 }
 

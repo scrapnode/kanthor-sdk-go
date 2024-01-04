@@ -22,13 +22,13 @@ var _ MappedNullable = &EndpointRuleGetRes{}
 type EndpointRuleGetRes struct {
 	ConditionExpression *string `json:"condition_expression,omitempty"`
 	ConditionSource *string `json:"condition_source,omitempty"`
-	CreatedAt *int32 `json:"created_at,omitempty"`
+	CreatedAt *int64 `json:"created_at,omitempty"`
 	EpId *string `json:"ep_id,omitempty"`
 	Exclusionary *bool `json:"exclusionary,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Priority *int32 `json:"priority,omitempty"`
-	UpdatedAt *int32 `json:"updated_at,omitempty"`
+	Priority *int64 `json:"priority,omitempty"`
+	UpdatedAt *int64 `json:"updated_at,omitempty"`
 }
 
 // NewEndpointRuleGetRes instantiates a new EndpointRuleGetRes object
@@ -113,9 +113,9 @@ func (o *EndpointRuleGetRes) SetConditionSource(v string) {
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *EndpointRuleGetRes) GetCreatedAt() int32 {
+func (o *EndpointRuleGetRes) GetCreatedAt() int64 {
 	if o == nil || IsNil(o.CreatedAt) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CreatedAt
@@ -123,7 +123,7 @@ func (o *EndpointRuleGetRes) GetCreatedAt() int32 {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointRuleGetRes) GetCreatedAtOk() (*int32, bool) {
+func (o *EndpointRuleGetRes) GetCreatedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
@@ -139,8 +139,8 @@ func (o *EndpointRuleGetRes) HasCreatedAt() bool {
 	return false
 }
 
-// SetCreatedAt gets a reference to the given int32 and assigns it to the CreatedAt field.
-func (o *EndpointRuleGetRes) SetCreatedAt(v int32) {
+// SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
+func (o *EndpointRuleGetRes) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
 
@@ -273,9 +273,9 @@ func (o *EndpointRuleGetRes) SetName(v string) {
 }
 
 // GetPriority returns the Priority field value if set, zero value otherwise.
-func (o *EndpointRuleGetRes) GetPriority() int32 {
+func (o *EndpointRuleGetRes) GetPriority() int64 {
 	if o == nil || IsNil(o.Priority) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Priority
@@ -283,7 +283,7 @@ func (o *EndpointRuleGetRes) GetPriority() int32 {
 
 // GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointRuleGetRes) GetPriorityOk() (*int32, bool) {
+func (o *EndpointRuleGetRes) GetPriorityOk() (*int64, bool) {
 	if o == nil || IsNil(o.Priority) {
 		return nil, false
 	}
@@ -299,15 +299,15 @@ func (o *EndpointRuleGetRes) HasPriority() bool {
 	return false
 }
 
-// SetPriority gets a reference to the given int32 and assigns it to the Priority field.
-func (o *EndpointRuleGetRes) SetPriority(v int32) {
+// SetPriority gets a reference to the given int64 and assigns it to the Priority field.
+func (o *EndpointRuleGetRes) SetPriority(v int64) {
 	o.Priority = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *EndpointRuleGetRes) GetUpdatedAt() int32 {
+func (o *EndpointRuleGetRes) GetUpdatedAt() int64 {
 	if o == nil || IsNil(o.UpdatedAt) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UpdatedAt
@@ -315,7 +315,7 @@ func (o *EndpointRuleGetRes) GetUpdatedAt() int32 {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EndpointRuleGetRes) GetUpdatedAtOk() (*int32, bool) {
+func (o *EndpointRuleGetRes) GetUpdatedAtOk() (*int64, bool) {
 	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
@@ -331,8 +331,8 @@ func (o *EndpointRuleGetRes) HasUpdatedAt() bool {
 	return false
 }
 
-// SetUpdatedAt gets a reference to the given int32 and assigns it to the UpdatedAt field.
-func (o *EndpointRuleGetRes) SetUpdatedAt(v int32) {
+// SetUpdatedAt gets a reference to the given int64 and assigns it to the UpdatedAt field.
+func (o *EndpointRuleGetRes) SetUpdatedAt(v int64) {
 	o.UpdatedAt = &v
 }
 

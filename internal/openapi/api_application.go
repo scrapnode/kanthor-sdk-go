@@ -473,8 +473,8 @@ type ApiApplicationGetRequest struct {
 	ApiService *ApplicationAPIService
 	id *[]string
 	q *string
-	limit *int32
-	page *int32
+	limit *int64
+	page *int64
 }
 
 // list by ids
@@ -490,13 +490,13 @@ func (r ApiApplicationGetRequest) Q(q string) ApiApplicationGetRequest {
 }
 
 // limit returning records
-func (r ApiApplicationGetRequest) Limit(limit int32) ApiApplicationGetRequest {
+func (r ApiApplicationGetRequest) Limit(limit int64) ApiApplicationGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // current requesting page
-func (r ApiApplicationGetRequest) Page(page int32) ApiApplicationGetRequest {
+func (r ApiApplicationGetRequest) Page(page int64) ApiApplicationGetRequest {
 	r.page = &page
 	return r
 }
@@ -548,13 +548,13 @@ func (a *ApplicationAPIService) ApplicationGetExecute(r ApiApplicationGetRequest
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "_limit", r.limit, "")
 	} else {
-		var defaultValue int32 = 10
+		var defaultValue int64 = 10
 		r.limit = &defaultValue
 	}
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "_page", r.page, "")
 	} else {
-		var defaultValue int32 = 0
+		var defaultValue int64 = 0
 		r.page = &defaultValue
 	}
 	// to determine the Content-Type header

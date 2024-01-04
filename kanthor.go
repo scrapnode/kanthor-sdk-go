@@ -1,7 +1,6 @@
 package kanthorsdk
 
 import (
-	_ "embed"
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
@@ -10,15 +9,6 @@ import (
 	"github.com/google/uuid"
 	"github.com/scrapnode/kanthor-sdk-go/internal/openapi"
 )
-
-//go:embed project.json
-var project []byte
-
-type Project struct {
-	Version string            `json:"version"`
-	Host    string            `json:"host"`
-	Hosts   map[string]string `json:"hosts"`
-}
 
 type Kanthor struct {
 	Account      *Account
@@ -68,8 +58,9 @@ func New(credentials string, options ...Option) (*Kanthor, error) {
 
 	api := openapi.NewAPIClient(conf)
 	sdk := &Kanthor{
-		Account: &Account{api: api},
-		Message: &Message{api: api},
+		Account:     &Account{api: api},
+		Application: &Application{api: api},
+		Message:     &Message{api: api},
 	}
 	return sdk, nil
 }

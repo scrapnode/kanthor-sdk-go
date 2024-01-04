@@ -30,3 +30,17 @@ func scheme(host string) string {
 	}
 	return "https"
 }
+
+func max[T int | int32 | int64](x, y T) T {
+	if x < y {
+		return y
+	}
+	return x
+}
+
+func min[T int | int32 | int64](x, y T) T {
+	if x > y {
+		return y
+	}
+	return x
+}

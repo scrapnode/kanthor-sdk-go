@@ -38,7 +38,7 @@ jobs:
           generator: go
           config-file: openapi-generator-config.json
           openapi-file: openapi.json
-          command-args: -o internal/openapi --ignore-file-override .openapi-generator-ignore
+          command-args: -o internal/openapi --ignore-file-override .openapi-generator-ignore --type-mappings int32=int64
 
       - name: update
         run: |

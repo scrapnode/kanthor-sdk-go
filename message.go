@@ -6,18 +6,20 @@ import (
 	"github.com/scrapnode/kanthor-sdk-go/internal/openapi"
 )
 
-type Message struct {
-	api *openapi.APIClient
-}
-
 type (
 	MessageCreateReq = openapi.MessageCreateReq
 	MessageCreateRes = openapi.MessageCreateRes
 )
 
+type Message struct {
+	api *openapi.APIClient
+}
+
 func (instance *Message) Create(ctx context.Context, req *MessageCreateReq) (*MessageCreateRes, error) {
 	request := instance.api.MessageAPI.MessagePost(ctx)
-	response, res, err := request.Payload(*req).Execute()
+	request = request.Payload(*req)
+
+	response, res, err := request.Execute()
 	if err != nil {
 		return nil, errorify(err, res)
 	}

@@ -485,8 +485,8 @@ type ApiEndpointGetRequest struct {
 	appId *string
 	id *[]string
 	q *string
-	limit *int32
-	page *int32
+	limit *int64
+	page *int64
 }
 
 // application id
@@ -508,13 +508,13 @@ func (r ApiEndpointGetRequest) Q(q string) ApiEndpointGetRequest {
 }
 
 // limit returning records
-func (r ApiEndpointGetRequest) Limit(limit int32) ApiEndpointGetRequest {
+func (r ApiEndpointGetRequest) Limit(limit int64) ApiEndpointGetRequest {
 	r.limit = &limit
 	return r
 }
 
 // current requesting page
-func (r ApiEndpointGetRequest) Page(page int32) ApiEndpointGetRequest {
+func (r ApiEndpointGetRequest) Page(page int64) ApiEndpointGetRequest {
 	r.page = &page
 	return r
 }
@@ -569,13 +569,13 @@ func (a *EndpointAPIService) EndpointGetExecute(r ApiEndpointGetRequest) (*Endpo
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "_limit", r.limit, "")
 	} else {
-		var defaultValue int32 = 10
+		var defaultValue int64 = 10
 		r.limit = &defaultValue
 	}
 	if r.page != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "_page", r.page, "")
 	} else {
-		var defaultValue int32 = 0
+		var defaultValue int64 = 0
 		r.page = &defaultValue
 	}
 	// to determine the Content-Type header
