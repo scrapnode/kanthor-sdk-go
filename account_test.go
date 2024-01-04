@@ -20,6 +20,6 @@ func TestAccountGet(t *testing.T) {
 		assert.NotEmpty(t, res.Account.Sub)
 		assert.NotEmpty(t, res.Account.Name)
 		assert.NotNil(t, res.Account.Metadata)
-		assert.Greater(t, len(*res.Account.Metadata), 0)
+		assert.Greater(t, len(res.Account.Metadata), 0)
 	})
 }

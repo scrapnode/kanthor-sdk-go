@@ -48,7 +48,7 @@ func AppId(sdk *kanthorsdk.Kanthor) (string, error) {
 		return "", err
 	}
 
-	return *res.Id, nil
+	return res.Id, nil
 }
 
 func EpId(sdk *kanthorsdk.Kanthor) (string, error) {
@@ -72,5 +72,5 @@ func EpId(sdk *kanthorsdk.Kanthor) (string, error) {
 		return "", err
 	}
 
-	return *res.Id, nil
+	return res.Id, nil
 }
