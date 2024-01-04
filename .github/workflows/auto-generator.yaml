@@ -1,0 +1,24 @@
+name: Auto Generator CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: openapi-generators/openapitools-generator-action@v1
+        with:
+          generator: go
+          config-file: openapi-generator-config.json
+          openapi-file: openapi.json
+          command-args: -o internal/openapi --ignore-file-override .openapi-generator-ignore
+
+      - name: update
+        run: |
+          git commit -m "update($(date +%Y.%-m%d.%-H%M)): auto generator"
+          git push origin
