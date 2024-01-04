@@ -171,14 +171,7 @@ func (a *EndpointAPIService) EndpointEpIdDeleteExecute(r ApiEndpointEpIdDeleteRe
 type ApiEndpointEpIdGetRequest struct {
 	ctx context.Context
 	ApiService *EndpointAPIService
-	appId *string
 	epId string
-}
-
-// application id
-func (r ApiEndpointEpIdGetRequest) AppId(appId string) ApiEndpointEpIdGetRequest {
-	r.appId = &appId
-	return r
 }
 
 func (r ApiEndpointEpIdGetRequest) Execute() (*EndpointGetRes, *http.Response, error) {
@@ -221,11 +214,7 @@ func (a *EndpointAPIService) EndpointEpIdGetExecute(r ApiEndpointEpIdGetRequest)
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.appId == nil {
-		return localVarReturnValue, nil, reportError("appId is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "app_id", r.appId, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
