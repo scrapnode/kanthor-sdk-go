@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  test:
+  generate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,5 +20,7 @@ jobs:
 
       - name: update
         run: |
+          git config user.name "Kanthor SDK Generator Bot"
+          git config user.email "<>"
           git commit -m "update($(date +%Y.%-m%d.%-H%M)): auto generator"
           git push origin
