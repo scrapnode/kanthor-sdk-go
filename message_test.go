@@ -9,12 +9,13 @@ import (
 )
 
 func TestMessageCreate(t *testing.T) {
-	appId := AppId()
+	sdk, err := New()
+	assert.Nil(t, err)
+
+	appId, err := AppId(sdk)
+	assert.Nil(t, err)
 
 	t.Run("success", func(st *testing.T) {
-		sdk, err := New()
-		assert.Nil(t, err)
-
 		ctx, cancel := Context()
 		defer cancel()
 

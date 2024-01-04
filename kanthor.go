@@ -60,6 +60,7 @@ func New(credentials string, options ...Option) (*Kanthor, error) {
 	sdk := &Kanthor{
 		Account:     &Account{api: api},
 		Application: &Application{api: api},
+		Endpoint:    &Endpoint{api: api},
 		Message:     &Message{api: api},
 	}
 	return sdk, nil

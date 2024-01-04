@@ -33,19 +33,16 @@ func Context() (context.Context, context.CancelFunc) {
 	return context.WithTimeout(context.Background(), time.Second*5)
 }
 
-func AppId() string {
-	file := os.Getenv("TEST_KANTHOR_SDK_APPLICATION_FILE")
-	if file == "" {
-		panic(errors.New("TEST_KANTHOR_SDK_APPLICATION_FILE must be set"))
-	}
-	appId, err := os.ReadFile(file)
+func AppId(sdk *kanthorsdk.Kanthor) (string, error) {
+	ctx, cancel := Context()
+	defer cancel()
+
+	req := &kanthorsdk.ApplicationCreateReq{}
+	req.SetName("testing")
+	res, err := sdk.Application.Create(ctx, req)
 	if err != nil {
-		panic(err)
+		return "", err
 	}
 
-	if string(appId) == "" || string(appId) == "null" {
-		panic(errors.New("TEST_KANTHOR_SDK_APPLICATION_FILE is empty"))
-	}
-
-	return string(appId)
+	return *res.Id, nil
 }
