@@ -52,7 +52,7 @@ func (instance *Webhook) Verify(payload []byte, headers http.Header) error {
 		return ErrWebhookHeadersMissing
 	}
 
-	ts, err := instance.verifyTs(timestamp)
+	ts, err := instance.timestamp(timestamp)
 	if err != nil {
 		return err
 	}
@@ -65,7 +65,7 @@ func (instance *Webhook) Verify(payload []byte, headers http.Header) error {
 	return instance.compare(signed, signature)
 }
 
-func (instance *Webhook) verifyTs(ts string) (int64, error) {
+func (instance *Webhook) timestamp(ts string) (int64, error) {
 	init, err := strconv.ParseInt(ts, 10, 64)
 	if err != nil {
 		return 0, ErrWebhookHeadersTs
