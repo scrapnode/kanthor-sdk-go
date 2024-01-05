@@ -10,14 +10,6 @@ import (
 	"github.com/scrapnode/kanthor-sdk-go/internal/openapi"
 )
 
-type Kanthor struct {
-	Account      *Account
-	Application  *Application
-	Endpoint     *Endpoint
-	EndpointRule *EndpointRule
-	Message      *Message
-}
-
 func New(credentials string, options ...Option) (*Kanthor, error) {
 	var proj Project
 	if err := json.Unmarshal(project, &proj); err != nil {
@@ -65,4 +57,12 @@ func New(credentials string, options ...Option) (*Kanthor, error) {
 		Message:      &Message{api: api},
 	}
 	return sdk, nil
+}
+
+type Kanthor struct {
+	Account      *Account
+	Application  *Application
+	Endpoint     *Endpoint
+	EndpointRule *EndpointRule
+	Message      *Message
 }

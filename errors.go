@@ -35,5 +35,13 @@ func errorify(err error, res *http.Response) error {
 		}
 		return e
 	}
-	return err
+	return &Error{error: err.Error()}
 }
+
+var (
+	ErrWebhookHeadersMissing = &Error{error: "WEBHOOK.HEADERS.MISSING_REQUIRED_PROPERTIES"}
+	ErrWebhookHeadersTs      = &Error{error: "WEBHOOK.HEADERS.TIMESTAMP_INVALID"}
+	ErrWebhookMessageTooOld  = &Error{error: "WEBHOOK.MESSAGE.TIMESTAMP_TOO_OLD"}
+	ErrWebhookMessageTooNew  = &Error{error: "WEBHOOK.MESSAGE.TIMESTAMP_TOO_NEW"}
+	ErrWebhookSignNotMatch   = &Error{error: "WEBHOOK.SIGNATURE.NOT_MATCH"}
+)

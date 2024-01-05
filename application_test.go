@@ -38,8 +38,8 @@ func TestApplication(t *testing.T) {
 		assert.NotEmpty(st, updateRes.Id)
 		assert.NotEmpty(st, updateRes.WsId)
 		assert.NotEqual(st, updateRes.Name, createRes.Name)
-		assert.Equal(st, updateRes.CreatedAt, createRes.CreatedAt)
 		assert.Greater(st, updateRes.UpdatedAt, createRes.UpdatedAt)
+		assert.Equal(st, createRes.CreatedAt, updateRes.CreatedAt)
 
 		getCtx, cancel := Context()
 		defer cancel()
@@ -48,8 +48,8 @@ func TestApplication(t *testing.T) {
 		assert.NotEmpty(st, getRes.Id)
 		assert.NotEmpty(st, getRes.WsId)
 		assert.Equal(st, getRes.Name, updateRes.Name)
-		assert.Equal(st, getRes.CreatedAt, createRes.CreatedAt)
 		assert.Greater(st, getRes.UpdatedAt, createRes.UpdatedAt)
+		assert.Equal(st, createRes.CreatedAt, getRes.CreatedAt)
 
 		ctx, cancel := Context()
 		defer cancel()
@@ -57,7 +57,7 @@ func TestApplication(t *testing.T) {
 		assert.Nil(st, err)
 		assert.NotNil(st, listRes.Data)
 		assert.GreaterOrEqual(st, listRes.Count, int64(1))
-		assert.Equal(st, listRes.Data[0].Id, createRes.Id)
+		assert.Equal(st, createRes.Id, listRes.Data[0].Id)
 
 		deleteCtx, cancel := Context()
 		defer cancel()
