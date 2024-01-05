@@ -3,7 +3,6 @@ package kanthorsdk
 import (
 	"crypto/hmac"
 	"crypto/sha256"
-	"encoding/base64"
 	"encoding/hex"
 	"fmt"
 	"net/http"
@@ -20,11 +19,6 @@ var (
 )
 
 func NewWebhook(secret string, options ...WebhookOption) (*Webhook, error) {
-	sec, err := base64.StdEncoding.DecodeString(secret)
-	if err != nil {
-		return nil, err
-	}
-
 	opts := &WebhookOptions{
 		tolerance: time.Minute * 5,
 	}
@@ -32,7 +26,7 @@ func NewWebhook(secret string, options ...WebhookOption) (*Webhook, error) {
 		option(opts)
 	}
 
-	return &Webhook{secret: sec, options: opts}, nil
+	return &Webhook{secret: []byte(secret), options: opts}, nil
 }
 
 type Webhook struct {
