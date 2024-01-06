@@ -31,7 +31,7 @@ func New(credentials string, options ...Option) (*Kanthor, error) {
 	conf.Host = h
 
 	// forllowing https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent#syntax
-	conf.UserAgent = fmt.Sprintf("kanthor/%s OpenAPI/go", proj.Version)
+	conf.UserAgent = fmt.Sprintf("kanthor/%s sdk/go", version)
 
 	// override configuration with custom options'
 	opts := &Options{}
