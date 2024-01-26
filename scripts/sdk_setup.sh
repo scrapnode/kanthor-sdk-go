@@ -18,7 +18,7 @@ curl -s -X POST "$TEST_KANTHOR_PORTAL_API_ENDPOINT/workspace" \
     -d "{\"name\": \"sdk test at $NOW\"}" > "$STORAGE_PATH/workspace.json"
 
 TEST_WORKSPACE_ID=$(cat $STORAGE_PATH/workspace.json | jq -r '.id')
-
+echo "ws_id:$TEST_WORKSPACE_ID"
 
 
 TEST_WORKSPACE_ID=$(cat $STORAGE_PATH/workspace.json | jq -r '.id')
@@ -34,6 +34,7 @@ curl -s -X POST "$TEST_KANTHOR_PORTAL_API_ENDPOINT/workspace/$TEST_WORKSPACE_ID/
 jq '{id: .app_id[0]}' "$STORAGE_PATH/workspace.transfer.json" > "$STORAGE_PATH/application.json"
 TEST_APPLICATION_ID=$(cat $STORAGE_PATH/application.json | jq -r '.id')
 echo -n "$TEST_APPLICATION_ID"  > "$STORAGE_PATH/application.plain"
+echo "app_id:$TEST_APPLICATION_ID"
 
 
 
@@ -50,3 +51,4 @@ curl -s -X POST "$TEST_KANTHOR_PORTAL_API_ENDPOINT/credentials" \
 TEST_WORKSPACE_CREDENITIALS_USER=$(cat $STORAGE_PATH/workspace.credentials.json | jq -r '.user')
 TEST_WORKSPACE_CREDENITIALS_PASS=$(cat $STORAGE_PATH/workspace.credentials.json | jq -r '.password')
 echo -n "$TEST_WORKSPACE_CREDENITIALS_USER:$TEST_WORKSPACE_CREDENITIALS_PASS"  > "$STORAGE_PATH/workspace.credentials.plain"
+echo "wsc_id:$TEST_WORKSPACE_CREDENITIALS_USER"

@@ -11,6 +11,23 @@ import (
 )
 
 func New(credentials string, options ...Option) (*Kanthor, error) {
+	conf, err := configure(credentials, options...)
+	if err != nil {
+		return nil, err
+	}
+
+	api := openapi.NewAPIClient(conf)
+	sdk := &Kanthor{
+		Account:      &Account{api: api},
+		Application:  &Application{api: api},
+		Endpoint:     &Endpoint{api: api},
+		EndpointRule: &EndpointRule{api: api},
+		Message:      &Message{api: api},
+	}
+	return sdk, nil
+}
+
+func configure(credentials string, options ...Option) (*openapi.Configuration, error) {
 	var proj Project
 	if err := json.Unmarshal(project, &proj); err != nil {
 		return nil, err
@@ -48,15 +65,7 @@ func New(credentials string, options ...Option) (*Kanthor, error) {
 		conf.Scheme = opts.Scheme
 	}
 
-	api := openapi.NewAPIClient(conf)
-	sdk := &Kanthor{
-		Account:      &Account{api: api},
-		Application:  &Application{api: api},
-		Endpoint:     &Endpoint{api: api},
-		EndpointRule: &EndpointRule{api: api},
-		Message:      &Message{api: api},
-	}
-	return sdk, nil
+	return conf, nil
 }
 
 type Kanthor struct {
