@@ -126,7 +126,7 @@ func (a *AccountAPIService) AccountMeGetExecute(r ApiAccountMeGetRequest) (*Acco
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GatewayError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

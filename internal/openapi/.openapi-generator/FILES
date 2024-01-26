@@ -33,7 +33,7 @@ model_endpoint_rule_update_req.go
 model_endpoint_rule_update_res.go
 model_endpoint_update_req.go
 model_endpoint_update_res.go
-model_gateway_error.go
+model_error.go
 model_message_create_req.go
 model_message_create_res.go
 response.go

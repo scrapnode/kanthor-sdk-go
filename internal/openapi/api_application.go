@@ -145,7 +145,7 @@ func (a *ApplicationAPIService) ApplicationAppIdDeleteExecute(r ApiApplicationAp
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GatewayError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -289,7 +289,7 @@ func (a *ApplicationAPIService) ApplicationAppIdGetExecute(r ApiApplicationAppId
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GatewayError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -445,7 +445,7 @@ func (a *ApplicationAPIService) ApplicationAppIdPatchExecute(r ApiApplicationApp
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GatewayError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -631,7 +631,7 @@ func (a *ApplicationAPIService) ApplicationGetExecute(r ApiApplicationGetRequest
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GatewayError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -783,7 +783,7 @@ func (a *ApplicationAPIService) ApplicationPostExecute(r ApiApplicationPostReque
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GatewayError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

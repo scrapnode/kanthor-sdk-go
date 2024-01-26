@@ -30,7 +30,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -76,7 +76,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -102,7 +102,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -130,7 +130,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -156,7 +156,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -189,7 +189,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -242,7 +242,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -268,7 +268,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -296,7 +296,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -322,7 +322,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -355,7 +355,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -383,7 +383,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -441,7 +441,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -467,7 +467,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -495,7 +495,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -521,7 +521,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -554,7 +554,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gateway.Error'
+                $ref: '#/components/schemas/Error'
           description: ""
       security:
       - Authorization: []
@@ -1287,6 +1287,15 @@ components:
       - updated_at
       - uri
       type: object
+    Error:
+      example:
+        error: error
+      properties:
+        error:
+          type: string
+      required:
+      - error
+      type: object
     MessageCreateReq:
       example:
         headers:
@@ -1322,16 +1331,6 @@ components:
           type: string
       required:
       - id
-      type: object
-    gateway.Error:
-      properties:
-        code:
-          type: string
-        error:
-          type: string
-      required:
-      - code
-      - error
       type: object
   securitySchemes:
     Authorization:

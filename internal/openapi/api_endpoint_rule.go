@@ -145,7 +145,7 @@ func (a *EndpointRuleAPIService) RuleEprIdDeleteExecute(r ApiRuleEprIdDeleteRequ
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GatewayError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -289,7 +289,7 @@ func (a *EndpointRuleAPIService) RuleEprIdGetExecute(r ApiRuleEprIdGetRequest) (
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GatewayError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -445,7 +445,7 @@ func (a *EndpointRuleAPIService) RuleEprIdPatchExecute(r ApiRuleEprIdPatchReques
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GatewayError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -651,7 +651,7 @@ func (a *EndpointRuleAPIService) RuleGetExecute(r ApiRuleGetRequest) (*EndpointR
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GatewayError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -803,7 +803,7 @@ func (a *EndpointRuleAPIService) RulePostExecute(r ApiRulePostRequest) (*Endpoin
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GatewayError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

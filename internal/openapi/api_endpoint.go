@@ -145,7 +145,7 @@ func (a *EndpointAPIService) EndpointEpIdDeleteExecute(r ApiEndpointEpIdDeleteRe
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GatewayError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -289,7 +289,7 @@ func (a *EndpointAPIService) EndpointEpIdGetExecute(r ApiEndpointEpIdGetRequest)
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GatewayError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -445,7 +445,7 @@ func (a *EndpointAPIService) EndpointEpIdPatchExecute(r ApiEndpointEpIdPatchRequ
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GatewayError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -641,7 +641,7 @@ func (a *EndpointAPIService) EndpointGetExecute(r ApiEndpointGetRequest) (*Endpo
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GatewayError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -793,7 +793,7 @@ func (a *EndpointAPIService) EndpointPostExecute(r ApiEndpointPostRequest) (*End
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GatewayError
+			var v Error
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
