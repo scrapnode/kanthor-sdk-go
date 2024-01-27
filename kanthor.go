@@ -23,12 +23,12 @@ func New(credentials string, options ...Option) (*Kanthor, error) {
 
 	api := openapi.NewAPIClient(conf)
 	sdk := &Kanthor{
-		Project:      &proj,
-		Account:      &Account{api: api},
-		Application:  &Application{api: api},
-		Endpoint:     &Endpoint{api: api},
-		EndpointRule: &EndpointRule{api: api},
-		Message:      &Message{api: api},
+		Configuration: conf,
+		Account:       &Account{api: api},
+		Application:   &Application{api: api},
+		Endpoint:      &Endpoint{api: api},
+		EndpointRule:  &EndpointRule{api: api},
+		Message:       &Message{api: api},
 	}
 	return sdk, nil
 }
@@ -70,10 +70,10 @@ func configure(proj *Project, credentials string, options ...Option) (*openapi.C
 }
 
 type Kanthor struct {
-	Project      *Project
-	Account      *Account
-	Application  *Application
-	Endpoint     *Endpoint
-	EndpointRule *EndpointRule
-	Message      *Message
+	Configuration *openapi.Configuration
+	Account       *Account
+	Application   *Application
+	Endpoint      *Endpoint
+	EndpointRule  *EndpointRule
+	Message       *Message
 }
