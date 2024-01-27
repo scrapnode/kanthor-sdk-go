@@ -2,15 +2,13 @@ package kanthorsdk
 
 import _ "embed"
 
-//go:embed .version
-var version string
-
 //go:embed project.json
 var project []byte
 
 type Project struct {
-	Host  string            `json:"host"`
-	Hosts map[string]string `json:"hosts"`
+	Version string            `json:"version"`
+	Host    string            `json:"host"`
+	Hosts   map[string]string `json:"hosts"`
 }
 
 var DefaultPagingLimitMin int64 = 5

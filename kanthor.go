@@ -11,13 +11,19 @@ import (
 )
 
 func New(credentials string, options ...Option) (*Kanthor, error) {
-	conf, err := configure(credentials, options...)
+	var proj Project
+	if err := json.Unmarshal(project, &proj); err != nil {
+		return nil, err
+	}
+
+	conf, err := configure(&proj, credentials, options...)
 	if err != nil {
 		return nil, err
 	}
 
 	api := openapi.NewAPIClient(conf)
 	sdk := &Kanthor{
+		Project:      &proj,
 		Account:      &Account{api: api},
 		Application:  &Application{api: api},
 		Endpoint:     &Endpoint{api: api},
@@ -27,12 +33,7 @@ func New(credentials string, options ...Option) (*Kanthor, error) {
 	return sdk, nil
 }
 
-func configure(credentials string, options ...Option) (*openapi.Configuration, error) {
-	var proj Project
-	if err := json.Unmarshal(project, &proj); err != nil {
-		return nil, err
-	}
-
+func configure(proj *Project, credentials string, options ...Option) (*openapi.Configuration, error) {
 	conf := openapi.NewConfiguration()
 	conf.Scheme = "https"
 	conf.Middleware = func(r *http.Request) {
@@ -41,14 +42,14 @@ func configure(credentials string, options ...Option) (*openapi.Configuration, e
 
 	conf.AddDefaultHeader("Authorization", fmt.Sprintf("Basic %s", base64.StdEncoding.EncodeToString([]byte(credentials))))
 
-	h, err := host(credentials, &proj)
+	h, err := host(proj, credentials)
 	if err != nil {
 		return nil, err
 	}
 	conf.Host = h
 
 	// forllowing https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent#syntax
-	conf.UserAgent = fmt.Sprintf("kanthor/%s sdk/go", version)
+	conf.UserAgent = fmt.Sprintf("kanthor/%s sdk/go", proj.Version)
 
 	// override configuration with custom options'
 	opts := &Options{}
@@ -69,6 +70,7 @@ func configure(credentials string, options ...Option) (*openapi.Configuration, e
 }
 
 type Kanthor struct {
+	Project      *Project
 	Account      *Account
 	Application  *Application
 	Endpoint     *Endpoint

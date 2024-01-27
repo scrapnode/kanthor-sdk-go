@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func host(credentials string, proj *Project) (string, error) {
+func host(proj *Project, credentials string) (string, error) {
 	segments := strings.Split(credentials, ":")
 	if len(segments) != 2 || len(segments[1]) == 0 {
 		return "", errors.New("malform credentials")
