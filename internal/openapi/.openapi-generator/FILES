@@ -22,6 +22,7 @@ model_endpoint_create_req.go
 model_endpoint_create_res.go
 model_endpoint_delete_res.go
 model_endpoint_get_res.go
+model_endpoint_get_secret_res.go
 model_endpoint_list_res.go
 model_endpoint_rule.go
 model_endpoint_rule_create_req.go

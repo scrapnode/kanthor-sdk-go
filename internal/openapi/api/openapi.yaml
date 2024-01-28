@@ -363,6 +363,33 @@ paths:
       tags:
       - endpoint
       x-codegen-request-body-name: payload
+  /endpoint/{ep_id}/secret:
+    get:
+      parameters:
+      - description: endpoint id
+        in: path
+        name: ep_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointGetSecretRes'
+          description: OK
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: ""
+      security:
+      - Authorization: []
+      - WorkspaceId: []
+      tags:
+      - endpoint
   /message:
     post:
       requestBody:
@@ -823,6 +850,7 @@ components:
       type: object
     EndpointCreateRes:
       example:
+        secret_key: secret_key
         method: method
         updated_at: 6
         name: name
@@ -841,6 +869,12 @@ components:
           type: string
         name:
           type: string
+        secret_key:
+          description: |-
+            To make the UI become friendly we will return the secret key after user create the new endpoint
+            but we don't want to return that key everytime user request for the endpoint
+            user must have specific permission to reveal the secret key of an endpoint
+          type: string
         updated_at:
           type: integer
         uri:
@@ -851,6 +885,7 @@ components:
       - id
       - method
       - name
+      - secret_key
       - updated_at
       - uri
       type: object
@@ -919,6 +954,15 @@ components:
       - name
       - updated_at
       - uri
+      type: object
+    EndpointGetSecretRes:
+      example:
+        secret_key: secret_key
+      properties:
+        secret_key:
+          type: string
+      required:
+      - secret_key
       type: object
     EndpointListRes:
       example:
