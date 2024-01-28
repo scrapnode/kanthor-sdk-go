@@ -27,6 +27,8 @@ type EndpointCreateRes struct {
 	Id string `json:"id"`
 	Method string `json:"method"`
 	Name string `json:"name"`
+	// To make the UI become friendly we will return the secret key after user create the new endpoint but we don't want to return that key everytime user request for the endpoint user must have specific permission to reveal the secret key of an endpoint
+	SecretKey string `json:"secret_key"`
 	UpdatedAt int64 `json:"updated_at"`
 	Uri string `json:"uri"`
 }
@@ -37,13 +39,14 @@ type _EndpointCreateRes EndpointCreateRes
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEndpointCreateRes(appId string, createdAt int64, id string, method string, name string, updatedAt int64, uri string) *EndpointCreateRes {
+func NewEndpointCreateRes(appId string, createdAt int64, id string, method string, name string, secretKey string, updatedAt int64, uri string) *EndpointCreateRes {
 	this := EndpointCreateRes{}
 	this.AppId = appId
 	this.CreatedAt = createdAt
 	this.Id = id
 	this.Method = method
 	this.Name = name
+	this.SecretKey = secretKey
 	this.UpdatedAt = updatedAt
 	this.Uri = uri
 	return &this
@@ -177,6 +180,30 @@ func (o *EndpointCreateRes) SetName(v string) {
 	o.Name = v
 }
 
+// GetSecretKey returns the SecretKey field value
+func (o *EndpointCreateRes) GetSecretKey() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SecretKey
+}
+
+// GetSecretKeyOk returns a tuple with the SecretKey field value
+// and a boolean to check if the value has been set.
+func (o *EndpointCreateRes) GetSecretKeyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SecretKey, true
+}
+
+// SetSecretKey sets field value
+func (o *EndpointCreateRes) SetSecretKey(v string) {
+	o.SecretKey = v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value
 func (o *EndpointCreateRes) GetUpdatedAt() int64 {
 	if o == nil {
@@ -240,6 +267,7 @@ func (o EndpointCreateRes) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["method"] = o.Method
 	toSerialize["name"] = o.Name
+	toSerialize["secret_key"] = o.SecretKey
 	toSerialize["updated_at"] = o.UpdatedAt
 	toSerialize["uri"] = o.Uri
 	return toSerialize, nil
@@ -255,6 +283,7 @@ func (o *EndpointCreateRes) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"method",
 		"name",
+		"secret_key",
 		"updated_at",
 		"uri",
 	}
