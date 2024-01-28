@@ -28,6 +28,9 @@ func scheme(host string) string {
 	if strings.HasPrefix(host, "127.0.0.1") {
 		return "http"
 	}
+	if strings.HasSuffix(host, ".local") {
+		return "http"
+	}
 	return "https"
 }
 
