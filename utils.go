@@ -22,13 +22,14 @@ func host(proj *Project, credentials string) (string, error) {
 }
 
 func scheme(host string) string {
-	if strings.HasPrefix(host, "localhost") {
+	parts := strings.Split(host, ":")
+	if strings.HasPrefix(parts[0], "localhost") {
 		return "http"
 	}
-	if strings.HasPrefix(host, "127.0.0.1") {
+	if strings.HasPrefix(parts[0], "127.0.0.1") {
 		return "http"
 	}
-	if strings.HasSuffix(host, ".local") {
+	if strings.HasSuffix(parts[0], ".local") {
 		return "http"
 	}
 	return "https"
