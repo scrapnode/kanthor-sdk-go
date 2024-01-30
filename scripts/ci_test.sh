@@ -2,8 +2,7 @@
 set -e
 
 export KANTHOR_SDK_HOST=${KANTHOR_SDK_HOST:-"localhost:8180"}
-export KANTHOR_SDK_CREDENTIALS_FILE=${KANTHOR_SDK_CREDENTIALS_FILE:-"/tmp/workspace.credentials.plain"}
-export KANTHOR_SDK_APPLICATION_FILE=${KANTHOR_SDK_APPLICATION_FILE:-"/tmp/application.plain"}
+export TEST_KANTHOR_SDK_CREDENTIALS_FILE=${TEST_KANTHOR_SDK_CREDENTIALS_FILE:-"/tmp/workspace.credentials.plain"}
 CHECKSUM_FILE=./checksum
 
 

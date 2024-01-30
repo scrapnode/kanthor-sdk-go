@@ -21,7 +21,9 @@ jobs:
           PORTAL_API_ENDPOINT: ${{ secrets.PORTAL_API_ENDPOINT }}
           PORTAL_AUTH_CREDENTIALS: ${{ secrets.PORTAL_AUTH_CREDENTIALS }}
           KANTHOR_SDK_HOST: ${{ secrets.KANTHOR_SDK_HOST }}
-          WORKSPACE_SNAPSHOT_PATH: data/snapshot.json
+          TEST_WORKSPACE_SNAPSHOT_PATH: data/snapshot.json
+          TEST_STORAGE_PATH: /tmp
+          TEST_KANTHOR_SDK_CREDENTIALS_FILE: /tmp/workspace.credentials.plain
         run: |
           bash scripts/sdk_setup.sh
           bash scripts/ci_test.sh
