@@ -29,7 +29,12 @@ func scheme(host string) string {
 	if strings.HasPrefix(parts[0], "127.0.0.1") {
 		return "http"
 	}
+	// for k8s services
 	if strings.HasSuffix(parts[0], ".local") {
+		return "http"
+	}
+	// for docker compose services
+	if !strings.Contains(parts[0], ".") {
 		return "http"
 	}
 	return "https"
