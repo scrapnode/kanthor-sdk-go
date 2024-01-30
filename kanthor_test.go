@@ -27,7 +27,7 @@ func New() (*kanthorsdk.Kanthor, error) {
 
 	return kanthorsdk.New(
 		string(credentials),
-		kanthorsdk.WithHost(os.Getenv("TEST_KANTHOR_SDK_HOST")),
+		kanthorsdk.WithHost(os.Getenv("KANTHOR_SDK_HOST")),
 		kanthorsdk.WithDebug(os.Getenv("TEST_DEBUG") == "TRUE"),
 	)
 }

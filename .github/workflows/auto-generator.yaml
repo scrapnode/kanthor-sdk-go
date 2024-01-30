@@ -18,10 +18,10 @@ jobs:
 
       - name: Test
         env:
-          TEST_KANTHOR_PORTAL_API_ENDPOINT: ${{ secrets.TEST_KANTHOR_PORTAL_API_ENDPOINT }}
-          TEST_KANTHOR_SDK_HOST: ${{ secrets.TEST_KANTHOR_SDK_HOST }}
-          TEST_KANTHOR_SDK_CREDENTIALS_FILE: /tmp/workspace.credentials.plain
-          TEST_KANTHOR_SDK_APPLICATION_FILE: /tmp/application.plain
+          PORTAL_API_ENDPOINT: ${{ secrets.PORTAL_API_ENDPOINT }}
+          PORTAL_AUTH_CREDENTIALS: ${{ secrets.PORTAL_AUTH_CREDENTIALS }}
+          KANTHOR_SDK_HOST: ${{ secrets.KANTHOR_SDK_HOST }}
+          WORKSPACE_SNAPSHOT_PATH: data/snapshot.json
         run: |
           bash scripts/sdk_setup.sh
           bash scripts/ci_test.sh
