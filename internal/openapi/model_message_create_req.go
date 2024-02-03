@@ -23,7 +23,7 @@ var _ MappedNullable = &MessageCreateReq{}
 // MessageCreateReq struct for MessageCreateReq
 type MessageCreateReq struct {
 	AppId string `json:"app_id"`
-	Body map[string]interface{} `json:"body"`
+	Body string `json:"body"`
 	Headers map[string]string `json:"headers"`
 	Type string `json:"type"`
 }
@@ -34,7 +34,7 @@ type _MessageCreateReq MessageCreateReq
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMessageCreateReq(appId string, body map[string]interface{}, headers map[string]string, type_ string) *MessageCreateReq {
+func NewMessageCreateReq(appId string, body string, headers map[string]string, type_ string) *MessageCreateReq {
 	this := MessageCreateReq{}
 	this.AppId = appId
 	this.Body = body
@@ -76,9 +76,9 @@ func (o *MessageCreateReq) SetAppId(v string) {
 }
 
 // GetBody returns the Body field value
-func (o *MessageCreateReq) GetBody() map[string]interface{} {
+func (o *MessageCreateReq) GetBody() string {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret string
 		return ret
 	}
 
@@ -87,15 +87,15 @@ func (o *MessageCreateReq) GetBody() map[string]interface{} {
 
 // GetBodyOk returns a tuple with the Body field value
 // and a boolean to check if the value has been set.
-func (o *MessageCreateReq) GetBodyOk() (map[string]interface{}, bool) {
+func (o *MessageCreateReq) GetBodyOk() (*string, bool) {
 	if o == nil {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
-	return o.Body, true
+	return &o.Body, true
 }
 
 // SetBody sets field value
-func (o *MessageCreateReq) SetBody(v map[string]interface{}) {
+func (o *MessageCreateReq) SetBody(v string) {
 	o.Body = v
 }
 
