@@ -2,12 +2,18 @@ package kanthorsdk
 
 import (
 	"context"
+	"encoding/json"
 
 	"github.com/scrapnode/kanthor-sdk-go/internal/openapi"
 )
 
 type (
-	MessageCreateReq = openapi.MessageCreateReq
+	MessageCreateReq struct {
+		AppId   string
+		Body    map[string]any
+		Headers map[string]string
+		Type    string
+	}
 	MessageCreateRes = openapi.MessageCreateRes
 )
 
@@ -16,15 +22,18 @@ type Message struct {
 }
 
 func (instance *Message) Create(ctx context.Context, req *MessageCreateReq) (*MessageCreateRes, error) {
-	if req.Headers == nil {
-		req.Headers = make(map[string]string)
-	}
-	if _, exist := req.Headers["Content-Type"]; !exist {
-		req.Headers["Content-Type"] = "application/json"
+	body, err := json.Marshal(req.Body)
+	if err != nil {
+		return nil, err
 	}
 
 	request := instance.api.MessageAPI.MessagePost(ctx)
-	request = request.Payload(*req)
+	request = request.Payload(openapi.MessageCreateReq{
+		AppId:   req.AppId,
+		Type:    req.Type,
+		Headers: req.Headers,
+		Body:    string(body),
+	})
 
 	response, res, err := request.Execute()
 	if err != nil {

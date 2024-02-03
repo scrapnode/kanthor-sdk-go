@@ -1,7 +1,6 @@
 package kanthorsdk_test
 
 import (
-	"fmt"
 	"testing"
 	"time"
 
@@ -20,12 +19,12 @@ func TestMessageCreate(t *testing.T) {
 		ctx, cancel := Context()
 		defer cancel()
 
-		req := &kanthorsdk.MessageCreateReq{}
-		req.SetAppId(appId)
-		req.SetType("testing.sdk")
-		req.SetHeaders(map[string]string{"X-Client": "Kanthor SDK Go", "Content-Type": "application/json"})
-		req.SetBody(fmt.Sprintf(`{"timestamp": %d}`, time.Now().UnixMilli()))
-
+		req := &kanthorsdk.MessageCreateReq{
+			AppId:   appId,
+			Type:    "testing.sdk",
+			Headers: map[string]string{"X-Client": "Kanthor SDK Go"},
+			Body:    map[string]any{"timestamp": time.Now().UnixMilli()},
+		}
 		res, err := sdk.Message.Create(ctx, req)
 		assert.Nil(t, err)
 
@@ -36,12 +35,11 @@ func TestMessageCreate(t *testing.T) {
 		ctx, cancel := Context()
 		defer cancel()
 
-		req := &kanthorsdk.MessageCreateReq{}
-		req.SetAppId(appId)
-		req.SetType("testing.sdk")
-		req.SetHeaders(map[string]string{"X-Client": "Kanthor SDK Go"})
-		req.SetBody(fmt.Sprintf(`{"timestamp": %d}`, time.Now().UnixMilli()))
-
+		req := &kanthorsdk.MessageCreateReq{
+			AppId: appId,
+			Type:  "testing.sdk",
+			Body:  map[string]any{"timestamp": time.Now().UnixMilli()},
+		}
 		res, err := sdk.Message.Create(ctx, req)
 		assert.Nil(t, err)
 
