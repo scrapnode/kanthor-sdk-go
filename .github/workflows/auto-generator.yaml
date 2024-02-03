@@ -24,7 +24,7 @@ jobs:
           KANTHOR_PORTAL_API_ENDPOINT: ${{ secrets.KANTHOR_PORTAL_API_ENDPOINT }}
           KANTHOR_PORTAL_AUTH_CREDENTIALS: ${{ secrets.KANTHOR_PORTAL_AUTH_CREDENTIALS }}
           # testing
-          TEST_KANTHOR_SDK_CREDENTIALS_FILE: /tmp/workspace.credentials.plain
+          TEST_SDK_CREDENTIALS_FILE: /tmp/workspace.credentials.plain
           KANTHOR_SDK_HOST: ${{ secrets.KANTHOR_SDK_HOST }}
         run: |
           bash scripts/sdk_setup.sh
