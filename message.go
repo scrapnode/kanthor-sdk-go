@@ -16,6 +16,13 @@ type Message struct {
 }
 
 func (instance *Message) Create(ctx context.Context, req *MessageCreateReq) (*MessageCreateRes, error) {
+	if req.Headers == nil {
+		req.Headers = make(map[string]string)
+	}
+	if _, exist := req.Headers["Content-Type"]; !exist {
+		req.Headers["Content-Type"] = "application/json"
+	}
+
 	request := instance.api.MessageAPI.MessagePost(ctx)
 	request = request.Payload(*req)
 

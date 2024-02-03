@@ -12,9 +12,9 @@ import (
 )
 
 func New() (*kanthorsdk.Kanthor, error) {
-	file := os.Getenv("TEST_KANTHOR_SDK_CREDENTIALS_FILE")
+	file := os.Getenv("TEST_SDK_CREDENTIALS_FILE")
 	if file == "" {
-		return nil, errors.New("TEST_KANTHOR_SDK_CREDENTIALS_FILE must be set")
+		return nil, errors.New("TEST_SDK_CREDENTIALS_FILE must be set")
 	}
 	credentials, err := os.ReadFile(file)
 	if err != nil {
@@ -22,7 +22,7 @@ func New() (*kanthorsdk.Kanthor, error) {
 	}
 
 	if string(credentials) == "" {
-		return nil, errors.New("TEST_KANTHOR_SDK_CREDENTIALS_FILE is empty")
+		return nil, errors.New("TEST_SDK_CREDENTIALS_FILE is empty")
 	}
 
 	return kanthorsdk.New(
