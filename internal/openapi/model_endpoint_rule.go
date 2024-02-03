@@ -3,7 +3,7 @@ Kanthor SDK API
 
 SDK API
 
-API version: 1.0
+API version: 2022.1201.1701
 Contact: support@kanthorlabs.com
 */
 

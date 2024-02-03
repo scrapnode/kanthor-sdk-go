@@ -3,7 +3,7 @@ Kanthor SDK API
 
 SDK API
 
-API version: 1.0
+API version: 2022.1201.1701
 Contact: support@kanthorlabs.com
 */
 
@@ -42,7 +42,7 @@ var (
 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
 )
 
-// APIClient manages communication with the Kanthor SDK API API v1.0
+// APIClient manages communication with the Kanthor SDK API API v2022.1201.1701
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
